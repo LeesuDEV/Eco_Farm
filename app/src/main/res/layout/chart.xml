@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/chart_menu"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/chart_image"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="54dp"
+                android:layout_height="51dp"
+                android:src="@drawable/baseline_bluetooth_24"
+                app:tint="#0073FF" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="제어모드"
+                android:textColor="#0073ff"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="40dp"
+                android:background="#EDEDED"
+                android:textColor="#000000"
+                android:text="일간"
+                android:layout_marginLeft="35dp"
+                android:layout_marginBottom="3dp"
+                android:layout_gravity="bottom"/>
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="40dp"
+                android:background="#EDEDED"
+                android:textColor="#000000"
+                android:text="주간"
+                android:layout_marginBottom="3dp"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"/>
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="40dp"
+                android:background="#EDEDED"
+                android:textColor="#000000"
+                android:text="월간"
+                android:layout_marginBottom="3dp"
+                android:layout_gravity="bottom"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="100dp"
+            android:background="@drawable/rounded_corner_box"
+            android:orientation="vertical"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:text="온도통계"
+                    android:textColor="#FF8300"
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:fillViewport="true"
+                    android:scrollbars="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent">
+
+                        <com.github.mikephil.charting.charts.LineChart
+                            android:id="@+id/DegreeLineChart"
+                            android:layout_width="1000dp"
+                            android:layout_height="180dp" />
+                    </LinearLayout>
+                </HorizontalScrollView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:text="습도통계"
+                    android:textColor="#00AEFF"
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:fillViewport="true"
+                    android:scrollbars="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent">
+
+                        <com.github.mikephil.charting.charts.LineChart
+                            android:id="@+id/HumLineChart"
+                            android:layout_width="1000dp"
+                            android:layout_height="180dp" />
+                    </LinearLayout>
+                </HorizontalScrollView>
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

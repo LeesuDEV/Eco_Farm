@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "752716790349",
+    "firebase_url": "https://raspb-65aa0-default-rtdb.firebaseio.com",
+    "project_id": "raspb-65aa0",
+    "storage_bucket": "raspb-65aa0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:752716790349:android:bd8ac03572453b7e193a04",
+        "android_client_info": {
+          "package_name": "com.example.proto"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrrL5p778f36q5E_nJSzpLv-r7OucgyUc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

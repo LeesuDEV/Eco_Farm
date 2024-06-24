@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/setting_menu"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/setting_image"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="54dp"
+                android:layout_height="51dp"
+                android:src="@drawable/baseline_app_settings_alt_24"
+                app:tint="#6C89AC" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="제어모드"
+                android:textColor="#6C89AC"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_margin="15dp"
+            app:cardCornerRadius="15dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="#ffffff">
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="15dp"
+                    android:text="희망하는 설정이 있나요?"
+                    android:layout_marginLeft="4dp"
+                    android:textSize="26dp"
+                    android:textStyle="bold"
+                    android:textColor="#07D8D1"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/netmarble_bold"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#ffffff"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_marginBottom="10dp"
+                            android:orientation="horizontal"
+                            android:paddingLeft="5dp">
+
+                            <ImageView
+                                android:layout_width="45dp"
+                                android:layout_height="45dp"
+                                android:src="@drawable/temperture"
+                                app:tint="#00ff00" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="10dp"
+                                android:text="희망온도 : "
+                                android:textColor="#000000"
+                                android:textSize="18sp"
+                                android:fontFamily="@font/netmarble_medium"/>
+
+                            <TextView
+                                android:id="@+id/hopeTempTV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text=""
+                                android:textColor="#000000"
+                                android:textSize="18sp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_marginBottom="10dp"
+                            android:orientation="horizontal"
+                            android:paddingLeft="5dp">
+
+                            <ImageView
+                                android:layout_width="45dp"
+                                android:layout_height="45dp"
+                                android:src="@drawable/water_percent"
+                                app:tint="#A4E5F1" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="10dp"
+                                android:text="희망습도 : "
+                                android:textColor="#000000"
+                                android:textSize="18sp"
+                                android:fontFamily="@font/netmarble_medium"/>
+
+                            <TextView
+                                android:id="@+id/hopeHumTV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text=""
+                                android:textColor="#000000"
+                                android:textSize="18sp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_marginBottom="10dp"
+                            android:orientation="horizontal"
+                            android:paddingLeft="5dp">
+
+                            <ImageView
+                                android:layout_width="45dp"
+                                android:layout_height="45dp"
+                                android:src="@drawable/light"
+                                app:tint="#FAE316" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="10dp"
+                                android:text="희망밝기 : "
+                                android:textColor="#000000"
+                                android:textSize="18sp"
+                                android:fontFamily="@font/netmarble_medium"/>
+
+                            <TextView
+                                android:id="@+id/hopeBrightnessTV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text=""
+                                android:textColor="#000000"
+                                android:textSize="18sp" />
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_marginBottom="10dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/HopeDegreeTv"
+                                android:layout_width="65dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="10dp"
+                                android:gravity="right|center"
+                                android:text=""
+                                android:textColor="#000000"
+                                android:textSize="18sp" />
+
+                            <EditText
+                                android:id="@+id/hopeTempET"
+                                android:layout_width="55dp"
+                                android:layout_height="40dp"
+                                android:layout_margin="5dp"
+                                android:background="@drawable/rounded_edit_box"
+                                android:gravity="center"
+                                android:text=""
+                                android:inputType="number"
+                                android:textColor="#000000"
+                                android:fontFamily="@font/netmarble_medium"/>
+
+                            <Button
+                                android:id="@+id/hopeTempSetBtn"
+                                android:layout_width="35dp"
+                                android:layout_height="39dp"
+                                android:layout_marginTop="3dp"
+                                android:background="@drawable/rounded_insert_box"
+                                android:text="set"
+                                android:textColor="#04A30C" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_marginBottom="10dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="65dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="10dp"
+                                android:gravity="right|center"
+                                android:text=""
+                                android:textColor="#000000"
+                                android:textSize="18sp" />
+
+                            <EditText
+                                android:id="@+id/hopeHumET"
+                                android:layout_width="55dp"
+                                android:layout_height="40dp"
+                                android:layout_margin="5dp"
+                                android:background="@drawable/rounded_edit_box"
+                                android:gravity="center"
+                                android:inputType="number"
+                                android:textColor="#000000"
+                                android:fontFamily="@font/netmarble_medium"/>
+
+                            <Button
+                                android:id="@+id/hopeHumSetBtn"
+                                android:layout_width="35dp"
+                                android:layout_height="39dp"
+                                android:layout_marginTop="3dp"
+                                android:background="@drawable/rounded_insert_box"
+                                android:text="set"
+                                android:textColor="#04A30C" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_marginBottom="10dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="65dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="10dp"
+                                android:gravity="right|center"
+                                android:text=""
+                                android:textColor="#000000"
+                                android:textSize="18sp" />
+
+                            <EditText
+                                android:id="@+id/hopeBrightnessET"
+                                android:layout_width="55dp"
+                                android:layout_height="40dp"
+                                android:layout_margin="5dp"
+                                android:background="@drawable/rounded_edit_box"
+                                android:gravity="center"
+                                android:inputType="number"
+                                android:textColor="#000000"
+                                android:fontFamily="@font/netmarble_medium"/>
+
+                            <Button
+                                android:id="@+id/hopeBrightnessSetBtn"
+                                android:layout_width="35dp"
+                                android:layout_height="39dp"
+                                android:layout_marginTop="3dp"
+                                android:background="@drawable/rounded_insert_box"
+                                android:text="set"
+                                android:textColor="#04A30C" />
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_margin="15dp"
+            app:cardCornerRadius="15dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="#ffffff">
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="15dp"
+                    android:text="물 잔량을 알려주세요"
+                    android:layout_marginLeft="4dp"
+                    android:textSize="26dp"
+                    android:textStyle="bold"
+                    android:textColor="#1DCAFF"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/netmarble_bold"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#ffffff"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_marginBottom="10dp"
+                            android:orientation="horizontal"
+                            android:paddingLeft="5dp">
+
+                            <ImageView
+                                android:layout_width="45dp"
+                                android:layout_height="45dp"
+                                android:src="@drawable/water_left"
+                                app:tint="#4A9DE6" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="10dp"
+                                android:text="잔량알림 : "
+                                android:textColor="#000000"
+                                android:textSize="18sp"
+                                android:fontFamily="@font/netmarble_medium"/>
+
+                            <TextView
+                                android:id="@+id/hopeWaterLevelTV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text=""
+                                android:textColor="#000000"
+                                android:textSize="18sp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_marginBottom="10dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="65dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="10dp"
+                                android:gravity="right|center"
+                                android:text=""
+                                android:textColor="#000000"
+                                android:textSize="18sp" />
+
+                            <EditText
+                                android:id="@+id/hopeWaterLevelET"
+                                android:layout_width="55dp"
+                                android:layout_height="40dp"
+                                android:layout_margin="5dp"
+                                android:background="@drawable/rounded_edit_box"
+                                android:gravity="center"
+                                android:text=""
+                                android:inputType="number"
+                                android:textColor="#000000"
+                                android:fontFamily="@font/netmarble_medium"/>
+
+                            <Button
+                                android:id="@+id/hopeWaterLevelBtn"
+                                android:layout_width="35dp"
+                                android:layout_height="39dp"
+                                android:layout_marginTop="3dp"
+                                android:background="@drawable/rounded_insert_box"
+                                android:text="set"
+                                android:textColor="#04A30C" />
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+</FrameLayout>
