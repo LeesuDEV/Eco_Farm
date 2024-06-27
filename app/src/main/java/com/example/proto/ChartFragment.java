@@ -6,6 +6,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -34,6 +37,8 @@ public class ChartFragment extends Fragment {
 
     DocumentReference fireStore_MyDB;
 
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); //날짜를 String에 담을 형식을 지정
+
     ArrayList<Entry> temp_List;
     ArrayList<Entry> hum_List; // 차트에 그리기전 Entry 타입(float,float)로 데이터를 받아오는 어레이리스트
 
@@ -57,6 +62,9 @@ public class ChartFragment extends Fragment {
     View view;
     List<LocalDate> dateList = new ArrayList<>(); //날짜 리스트를 받을 LocalDate형식의 어레이리스트
 
+    TextView dayTV;
+    Button dayBtn,weekBtn,monthBtn;
+
     public ChartFragment() {
 
     }
@@ -70,10 +78,15 @@ public class ChartFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle bundle) {
         super.onViewCreated(view, bundle);
 
+        dayBtn = view.findViewById(R.id.dayBtn);
+        weekBtn = view.findViewById(R.id.weekBtn);
+        monthBtn = view.findViewById(R.id.monthBtn);
+
+        dayTV = view.findViewById(R.id.dayTV);
+
         this.view = view;
 
         fireStore_MyDB = ((MainFragment) getActivity()).fireStore_MyDB;  // DocumentReference 형식의 참조데이터
-        //loadDateData();
 
         Calendar calendar = Calendar.getInstance(); //현재 날짜+시간을 받아옴
 
@@ -83,12 +96,26 @@ public class ChartFragment extends Fragment {
 
         LocalDate date = LocalDate.of(year, month, day); // 현재 날짜를 담은 LocalDate 객체
 
-        LocalDate date_test = LocalDate.of(2024, 05, 15); //테스트날짜 5월15일
+        LocalDate date_test = LocalDate.of(2024, 05, 9); //테스트날짜 5월15일
         int range = 7;
 
-        loadDateList_Data(date_test, range);
+        String nowDate = formatter.format(date_test);
 
-        //loadDateData(); 일일데이터 차트생성
+        dayTV.setText(nowDate);
+
+        loadDateData(date_test); //일일데이터 차트생성
+
+        dayBtn.setOnClickListener(r -> {
+            loadDateData(date_test);
+        });
+
+        weekBtn.setOnClickListener(r -> {
+            loadDateList_Data(date_test, range);
+        });
+
+        monthBtn.setOnClickListener(r -> {
+            Toast.makeText(getContext(),"아직 테스트중입니다",Toast.LENGTH_SHORT).show();
+        });
     }
 
     private void loadDateList_Data(LocalDate date, int index) {
@@ -100,17 +127,16 @@ public class ChartFragment extends Fragment {
         dateList_s = new float[index];
 
         for (int i = 0; i < index; i++) {
-            dateList.add(date.minusDays(i));
+            dateList.add(date.plusDays(i));
         }//오늘부터 -i일 까지 날짜리스트를 생성
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); //날짜를 String에 담을 형식을 지정
         //AtomicInteger counter = new AtomicInteger(dateList.size());  // 남은 작업 수를 추적
 
-        loadDataRecursively(dateList, formatter, 0);
+        loadDataRecursively(dateList, 0);
     }
 
 
-    public void loadDataRecursively(List<LocalDate> dateList, DateTimeFormatter formatter, int currentIndex) {
+    public void loadDataRecursively(List<LocalDate> dateList, int currentIndex) {
         if (currentIndex >= dateList.size()) { // 평균 온습도 추출이 다 끝났다면, 라인차트를 그림
             drawRangeChart();
             return;
@@ -136,7 +162,6 @@ public class ChartFragment extends Fragment {
 
                 long tempAvg = (long) Arrays.stream(tempOfDay).average().getAsDouble();
                 long humAvg = (long) Arrays.stream(humOfDay).average().getAsDouble(); // 평균 온습도를 평균을 구해주는 OptionalDouble 함수
-
                 synchronized (this) {
                     tempList[num] = tempAvg;
                     humList[num] = humAvg;
@@ -151,7 +176,7 @@ public class ChartFragment extends Fragment {
                 }
 
                 //다음 날짜에 대해 재귀호출
-                loadDataRecursively(dateList, formatter, currentIndex + 1);
+                loadDataRecursively(dateList, currentIndex + 1);
             }
         });
     }
@@ -215,11 +240,12 @@ public class ChartFragment extends Fragment {
         chart.invalidate();
     }
 
-    public void loadDateData() {  // 1일치 데이터셋 가져오기 (일일데이터)
+    public void loadDateData(LocalDate date) {  // 1일치 데이터셋 가져오기 (일일데이터)
         temp_List = new ArrayList<>();
         hum_List = new ArrayList<>(); // Entry타입 어레이리스트 초기화
 
-        fireStore_MyDB.collection("2024-04-07").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        String mDate = formatter.format(date);
+        fireStore_MyDB.collection(mDate).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
@@ -235,6 +261,9 @@ public class ChartFragment extends Fragment {
                             temp_List.add(new Entry(hour, degree));
                             hum_List.add(new Entry(hour, hum));
                         }
+
+                        tempLineChart = view.findViewById(R.id.DegreeLineChart);
+                        humLineChart = view.findViewById(R.id.HumLineChart); // 라인차트 id값 참조
 
                         createChart(temp_List, "degree", "#FF8300", tempLineChart);
                         createChart(hum_List, "hum", "#00AEFF", humLineChart);

@@ -166,7 +166,7 @@
                     android:textSize="26dp"
                     android:textStyle="bold"
                     android:textColor="#7CE35F"
-                    android:text="리수"
+                    android:text=""
                     android:shadowDy="3"
                     android:shadowDx="3"
                     android:shadowRadius="3"
@@ -245,7 +245,7 @@
                             android:id="@+id/startDateTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="2024-06-05"
+                            android:text=""
                             android:textColor="#000000"
                             android:textSize="18sp"
                             android:fontFamily="@font/netmarble_medium"/>
@@ -266,7 +266,7 @@
                             android:id="@+id/expireDateTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="2024-06-05"
+                            android:text=""
                             android:textColor="#000000"
                             android:textSize="18sp"
                             android:fontFamily="@font/netmarble_medium"/>
@@ -288,7 +288,7 @@
                             android:id="@+id/growthDateTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="3일"
+                            android:text="데이터를 불러오는중"
                             android:textColor="#000000"
                             android:textSize="18sp"
                             android:fontFamily="@font/netmarble_bold"/>
@@ -310,7 +310,7 @@
                             android:id="@+id/growthStateTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="발아중"
+                            android:text=""
                             android:textColor="#000000"
                             android:textSize="18sp"
                             android:fontFamily="@font/netmarble_bold"/>

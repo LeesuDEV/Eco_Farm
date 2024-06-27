@@ -2,23 +2,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
+    android:background="@drawable/login_image"
     android:orientation="vertical"
     android:weightSum="10">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.7"
-        android:orientation="vertical">
+        android:layout_weight="1.5"
+        android:orientation="vertical"
+        android:gravity="center">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="회원가입"
-            android:textColor="#000000"
-            android:textSize="25sp" />
+            android:textColor="#7789FF"
+            android:textSize="40sp"
+            android:fontFamily="@font/netmarble_bold"/>
 
     </LinearLayout>
 
@@ -91,7 +93,9 @@
                 android:layout_gravity="center"
                 android:background="@drawable/rounded_edit_box"
                 android:hint=""
-                android:textColor="#000000" />
+                android:paddingLeft="10dp"
+                android:textColor="#000000"
+                android:fontFamily="@font/netmarble_bold"/>
 
             <EditText
                 android:id="@+id/passwordET"
@@ -103,7 +107,10 @@
                 android:layout_gravity="center"
                 android:background="@drawable/rounded_edit_box"
                 android:hint=""
-                android:textColor="#000000" />
+                android:inputType="textPassword"
+                android:paddingLeft="10dp"
+                android:textColor="#000000"
+                android:fontFamily="@font/netmarble_bold"/>
 
             <EditText
                 android:id="@+id/passwordConfirmET"
@@ -115,7 +122,10 @@
                 android:layout_gravity="center"
                 android:background="@drawable/rounded_edit_box"
                 android:hint=""
-                android:textColor="#000000" />
+                android:inputType="textPassword"
+                android:paddingLeft="10dp"
+                android:textColor="#000000"
+                android:fontFamily="@font/netmarble_bold"/>
             <EditText
                 android:id="@+id/nickNameET"
                 android:layout_marginLeft="20dp"
@@ -126,7 +136,9 @@
                 android:layout_gravity="center"
                 android:background="@drawable/rounded_edit_box"
                 android:hint=""
-                android:textColor="#000000" />
+                android:paddingLeft="10dp"
+                android:textColor="#000000"
+                android:fontFamily="@font/netmarble_bold"/>
 
         </LinearLayout>
 
@@ -151,9 +163,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="100dp"
-            android:background="#919191"
+            android:background="#53CA45"
             android:text="가입완료"
-            android:textSize="18sp"/>
+            android:textSize="18sp"
+            android:fontFamily="@font/netmarble_bold"/>
         <Button
             android:id="@+id/backBtn"
             android:layout_width="wrap_content"
@@ -162,7 +175,8 @@
             android:layout_gravity="center"
             android:background="#919191"
             android:text="뒤로가기"
-            android:textSize="18sp"/>
+            android:textSize="18sp"
+            android:fontFamily="@font/netmarble_bold"/>
     </LinearLayout>
 
 </LinearLayout>

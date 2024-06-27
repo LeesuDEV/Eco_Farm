@@ -41,7 +41,7 @@ public class MainFragment extends AppCompatActivity {
     static DatabaseReference realtimeDB_Hope;
     static DatabaseReference realtimeDB_Now;
 
-    DocumentReference fireStore_MyDB; //DB값 -UID처리 돼있음
+    static DocumentReference fireStore_MyDB; //DB값 -UID처리 돼있음
 
     static FirebaseDatabase fireRealtimeDB = FirebaseDatabase.getInstance(); // 리얼타임 데이터베이스 변수선언
     static FirebaseFirestore fireStoreDB = FirebaseFirestore.getInstance(); // 파이어스토어 데이터베이스 변수선언
@@ -134,10 +134,12 @@ public class MainFragment extends AppCompatActivity {
                 realtimeDB_Hope = fireRealtimeDB.getReference("USER/" + uid + "/hope"); // Firebase Realtime Database 인스턴스의 참조를 생성
                 realtimeDB_Now = fireRealtimeDB.getReference("USER/" + uid + "/now");
 
+                fireStore_MyDB = FirebaseFirestore.getInstance().collection("users").document(uid); // FireStore값 참조
+
                 getRealtimeDB(); //리얼타임 DB 참조
 
                 // 유저의 FireStore 데이터 갖고오기.
-                fireStoreDB.collection("users").document(uid).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                fireStore_MyDB.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         Map<String, Object> data = documentSnapshot.getData();
@@ -160,7 +162,7 @@ public class MainFragment extends AppCompatActivity {
                                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_main, fragment).commit();
 
                                 userName_TextView.setText(userName + "님");
-                                showMyfarmStatus(); // 내 농작물 현황을 업데이트하는 메소드
+                                //showMyfarmStatus(); // 내 농작물 현황을 업데이트하는 메소드
                             }
                         });
                     }
@@ -170,95 +172,8 @@ public class MainFragment extends AppCompatActivity {
     }
     /*------------------------데이터베이스 쓰레드 ----------------------*/
 
-    public void changeDataListener() {
-        displayThread(MainFragment.now_temp, HomeFragment.nowTempTV, "˚");
-        displayThread(MainFragment.now_hum, HomeFragment.nowHumTV, "%");
-        displayThread(MainFragment.now_birghtness, HomeFragment.nowBrightnessTV, "%");
-        displayThread(MainFragment.now_waterLevel, HomeFragment.nowWaterLevelTV, "%");
-    }
 
 
-    /*------------------값 표출부분 ------------------------------------------*/
-    public void displayThread(DatabaseReference def, TextView textView, String s) {
-        def.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists() && snapshot.getValue() != null) {
-                    long Value = (long) snapshot.getValue();
-                    textView.setText(Value + s);
-                    Log.d("SUCCESS",snapshot.getKey() + " : " + snapshot.getValue() +":" + Value);
-                } else {
-                    Log.w("MainFragment", "DataSnapshot does not exist or has no value!");
-                }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.w("MainFragment", "Failed to read value.", error.toException());
-            }
-        });
-    }
-    /*--------------------------값 표출부분 끝 -----------------------------*/
-
-    public void showMyfarmStatus() {
-        fireStoreDB.collection("users").document(uid).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                Map<String, Object> data = documentSnapshot.getData();
-
-                changeDataListener(); // 텍스트뷰에 데이터 업데이트 하는 메소드
-
-                String crops = (String) data.get("CROPS");
-                String date = (String) data.get("DATE");
-                String expireDate = (String) data.get("EXPIRE_DATE");
-                String name = (String) data.get("USER_NAME");
-
-                HomeFragment.myNameTV.setText(name);
-
-                switch (crops) {
-                    case "상추":
-                        HomeFragment.cropsTV.setText(crops);
-                        HomeFragment.cropsImageView.setImageResource(R.drawable.sangchu);
-                        break;
-                    default:
-                        break;
-                }
-                HomeFragment.startDateTV.setText(date);
-                HomeFragment.expireDateTV.setText(expireDate);
-
-                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                try {
-                    // 몇일차이인지 계산
-                    Date mDate = dateFormat.parse(date);
-                    Date mTodayDate = dateFormat.parse(new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date())); //오늘날짜
-
-                    long growthMillis = mTodayDate.getTime() - mDate.getTime();
-                    HomeFragment.growthDate = TimeUnit.DAYS.convert(growthMillis, TimeUnit.MILLISECONDS);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-
-                HomeFragment.growthDateTV.setText("" + HomeFragment.growthDate + "일");
-
-                if (HomeFragment.growthDate > 45) {
-                    //재배
-                    HomeFragment.growthStateTV.setText("재배");
-                }
-                if (HomeFragment.growthDate < 45) {
-                    //성장
-                    HomeFragment.growthStateTV.setText("성장");
-                }
-                if (HomeFragment.growthDate < 21) {
-                    //묘목
-                    HomeFragment.growthStateTV.setText("묘목");
-                }
-                if (HomeFragment.growthDate < 7) {
-                    //발아
-                    HomeFragment.growthStateTV.setText("발아");
-                }
-
-            }
-        });
-    }
 }
 

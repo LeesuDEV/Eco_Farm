@@ -19,11 +19,16 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class SettingFragment extends Fragment {
 
     TextView hopeTempTV,hopeHumTV,hopeBrightnessTV,hopeWaterLevelTV; //현재 온도를 표시할 텍스트뷰
     EditText hopeTempET,hopeHumET,hopeBrightnessET,hopeWaterLevelET;
     Button hopeTempSetBtn,hopeHumSetBtn,hopeBrightnessSetBtn,hopeWaterLevelBtn;
+
+    String name,value;
 
     public SettingFragment(){
 
@@ -58,6 +63,7 @@ public class SettingFragment extends Fragment {
         hopeTempSetBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                name = "temp";
                 setHopeValue(hopeTempET,MainFragment.hope_temp);
             }
         });
@@ -65,6 +71,7 @@ public class SettingFragment extends Fragment {
         hopeHumSetBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                name = "hum";
                 setHopeValue(hopeHumET,MainFragment.hope_hum);
             }
         });
@@ -72,6 +79,7 @@ public class SettingFragment extends Fragment {
         hopeBrightnessSetBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                name = "brightness";
                 setHopeValue(hopeBrightnessET,MainFragment.hope_brightness);
             }
         });
@@ -79,6 +87,7 @@ public class SettingFragment extends Fragment {
         hopeWaterLevelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                name = "water_value";
                 setHopeValue(hopeWaterLevelET,MainFragment.hope_water_level);
             }
         });
@@ -94,6 +103,13 @@ public class SettingFragment extends Fragment {
             return;
         }
         def.setValue(Integer.parseInt(et.getText().toString()));
+
+        value = et.getText().toString();
+
+        Map<String,Object>data = new HashMap<>();
+        data.put(name,value);
+
+        MainFragment.fireStore_MyDB.collection("hope").document("hope").update(data);
         Toast.makeText(getContext(),"업데이트 됐습니다!",Toast.LENGTH_SHORT).show();
     }
 
