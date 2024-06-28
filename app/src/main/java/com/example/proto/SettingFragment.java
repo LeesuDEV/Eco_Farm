@@ -28,7 +28,8 @@ public class SettingFragment extends Fragment {
     EditText hopeTempET,hopeHumET,hopeBrightnessET,hopeWaterLevelET;
     Button hopeTempSetBtn,hopeHumSetBtn,hopeBrightnessSetBtn,hopeWaterLevelBtn;
 
-    String name,value;
+    String name;
+    int value;
 
     public SettingFragment(){
 
@@ -104,7 +105,7 @@ public class SettingFragment extends Fragment {
         }
         def.setValue(Integer.parseInt(et.getText().toString()));
 
-        value = et.getText().toString();
+        value = Integer.parseInt(et.getText().toString());
 
         Map<String,Object>data = new HashMap<>();
         data.put(name,value);

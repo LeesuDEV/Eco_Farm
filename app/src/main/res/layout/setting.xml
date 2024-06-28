@@ -47,7 +47,6 @@
                 android:orientation="vertical"
                 android:background="#ffffff">
                 <TextView
-                    android:id="@+id/textView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
@@ -63,12 +62,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="#ffffff"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:weightSum="2">
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
+                        android:layout_weight="1.4"
                         android:orientation="vertical">
 
                         <LinearLayout
@@ -186,9 +186,9 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
+                        android:layout_weight="0.6"
                         android:orientation="vertical">
 
                         <LinearLayout
@@ -199,17 +199,6 @@
                             android:layout_marginRight="4dp"
                             android:layout_marginBottom="10dp"
                             android:orientation="horizontal">
-
-                            <TextView
-                                android:id="@+id/HopeDegreeTv"
-                                android:layout_width="65dp"
-                                android:layout_height="30dp"
-                                android:layout_gravity="center"
-                                android:layout_marginLeft="10dp"
-                                android:gravity="right|center"
-                                android:text=""
-                                android:textColor="#000000"
-                                android:textSize="18sp" />
 
                             <EditText
                                 android:id="@+id/hopeTempET"
@@ -244,16 +233,6 @@
                             android:layout_marginBottom="10dp"
                             android:orientation="horizontal">
 
-                            <TextView
-                                android:layout_width="65dp"
-                                android:layout_height="30dp"
-                                android:layout_gravity="center"
-                                android:layout_marginLeft="10dp"
-                                android:gravity="right|center"
-                                android:text=""
-                                android:textColor="#000000"
-                                android:textSize="18sp" />
-
                             <EditText
                                 android:id="@+id/hopeHumET"
                                 android:layout_width="55dp"
@@ -283,16 +262,6 @@
                             android:layout_marginRight="4dp"
                             android:layout_marginBottom="10dp"
                             android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="65dp"
-                                android:layout_height="30dp"
-                                android:layout_gravity="center"
-                                android:layout_marginLeft="10dp"
-                                android:gravity="right|center"
-                                android:text=""
-                                android:textColor="#000000"
-                                android:textSize="18sp" />
 
                             <EditText
                                 android:id="@+id/hopeBrightnessET"
@@ -349,12 +318,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="#ffffff"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:weightSum="1">
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
+                        android:layout_weight="0.7"
                         android:orientation="vertical">
 
                         <LinearLayout
@@ -397,9 +367,9 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
+                        android:layout_weight="0.3"
                         android:orientation="vertical">
 
                         <LinearLayout
@@ -410,16 +380,6 @@
                             android:layout_marginRight="4dp"
                             android:layout_marginBottom="10dp"
                             android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="65dp"
-                                android:layout_height="30dp"
-                                android:layout_gravity="center"
-                                android:layout_marginLeft="10dp"
-                                android:gravity="right|center"
-                                android:text=""
-                                android:textColor="#000000"
-                                android:textSize="18sp" />
 
                             <EditText
                                 android:id="@+id/hopeWaterLevelET"
