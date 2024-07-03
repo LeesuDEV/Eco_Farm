@@ -50,6 +50,7 @@ public class MainFragment extends AppCompatActivity {
 
     static boolean status = false; // 작물 키우고있나? 아닌가? 상태
     static String startDate; // 식물 성장 시작일
+    static int week; // 식물 성장 주
 
     static DatabaseReference now_temp;
     static DatabaseReference now_hum;
@@ -86,7 +87,7 @@ public class MainFragment extends AppCompatActivity {
                         fragment = new HomeFragment();
                         break;
                     case (R.id.controll_menu):
-                        fragment = new ControlFragment();
+                        fragment = new PresetFragment();
                         break;
                     case (R.id.set_menu):
                         fragment = new SettingFragment();
@@ -152,6 +153,10 @@ public class MainFragment extends AppCompatActivity {
                         }
                         if (data.containsKey("DATE")) {
                             startDate = (String) data.get("DATE");
+                        }
+
+                        if (data.containsKey("WEEK")) {
+                            week = Integer.parseInt(data.get("WEEK").toString());
                         }
 
                         //작업후 기본 프래그먼트를 HomeFragment로 설정

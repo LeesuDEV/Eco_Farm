@@ -44,6 +44,8 @@ public class HomeFragment extends Fragment {
     static ImageView cropsImageView;
 
     int expireDate;
+
+    static String cropName;
     static long growthDate;
 
     public HomeFragment() {
@@ -234,24 +236,32 @@ public class HomeFragment extends Fragment {
 
                 HomeFragment.growthDateTV.setText("" + HomeFragment.growthDate + "일");
 
-                if (HomeFragment.growthDate > 45) {
-                    //재배
-                    HomeFragment.growthStateTV.setText("재배");
-                }
-                if (HomeFragment.growthDate < 45) {
-                    //성장
-                    HomeFragment.growthStateTV.setText("성장");
-                }
-                if (HomeFragment.growthDate < 21) {
-                    //묘목
-                    HomeFragment.growthStateTV.setText("묘목");
-                }
-                if (HomeFragment.growthDate < 7) {
-                    //발아
-                    HomeFragment.growthStateTV.setText("발아");
-                }
-
+                MainFragment.fireStore_MyDB.collection("preset")
             }
         });
     }
+
+    public void showGrowLevel() {
+        if (HomeFragment.growthDate > 42) {
+            //재배
+            HomeFragment.growthStateTV.setText("재배");
+        }
+        if (HomeFragment.growthDate < 42) {
+            //성숙기
+            HomeFragment.growthStateTV.setText("성숙기");
+        }
+        if (HomeFragment.growthDate < 28) {
+            //생장기
+            HomeFragment.growthStateTV.setText("생장기");
+        }
+        if (HomeFragment.growthDate < 14) {
+            //초기성장
+            HomeFragment.growthStateTV.setText("초기성장");
+        }
+        if (HomeFragment.growthDate < 7) {
+            //발아
+            HomeFragment.growthStateTV.setText("발아");
+        }
+    }
+
 }
