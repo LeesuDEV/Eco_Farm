@@ -18,6 +18,9 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -27,8 +30,10 @@ public class SettingFragment extends Fragment {
     TextView hopeTempTV,hopeHumTV,hopeBrightnessTV,hopeWaterLevelTV; //현재 온도를 표시할 텍스트뷰
     EditText hopeTempET,hopeHumET,hopeBrightnessET,hopeWaterLevelET;
     Button hopeTempSetBtn,hopeHumSetBtn,hopeBrightnessSetBtn,hopeWaterLevelBtn;
+    TextView PresetModeTV,PresetModeNoticeTV;
 
     String name;
+    boolean statusOfPreset = false;
     int value;
 
     public SettingFragment(){
@@ -58,6 +63,11 @@ public class SettingFragment extends Fragment {
         hopeHumSetBtn = view.findViewById(R.id.hopeHumSetBtn);
         hopeBrightnessSetBtn = view.findViewById(R.id.hopeBrightnessSetBtn);
         hopeWaterLevelBtn = view.findViewById(R.id.hopeWaterLevelBtn);
+
+        PresetModeTV = view.findViewById(R.id.PresetModeTV);
+        PresetModeNoticeTV = view.findViewById(R.id.PresetModeNoticeTV);
+
+        setPresetMode(); // 프리셋모드 설정을 해주는 메소드
 
         setChangeDataListener(); // 희망온도 체인지 리스너 메소드
 
@@ -94,24 +104,50 @@ public class SettingFragment extends Fragment {
         });
     }
 
+    private void setPresetMode(){
+        MainFragment.fireStore_MyDB.collection("preset").document("preset").addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                if (value == null && error != null){
+                    Log.d("ERROR","ERROR");
+                    return;
+                }
+
+                if(value.getBoolean("usePreset")){
+                    PresetModeTV.setText("프리셋모드 입니다");
+                    PresetModeNoticeTV.setVisibility(View.VISIBLE);
+                    statusOfPreset = true;
+                } else {
+                    PresetModeTV.setText("수동세팅모드 입니다");
+                    PresetModeNoticeTV.setVisibility(View.GONE);
+                    statusOfPreset = false;
+                }
+            }
+        });
+    }
+
     public void setHopeValue(EditText et,DatabaseReference def) {
-        if (et.getText().toString().isEmpty()){
-            Toast.makeText(getContext(),"값이 비어있습니다.",Toast.LENGTH_SHORT).show();
-            return;
+        if (!statusOfPreset) {
+            if (et.getText().toString().isEmpty()) {
+                Toast.makeText(getContext(), "값이 비어있습니다.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (Integer.parseInt(et.getText().toString()) > 100) {
+                Toast.makeText(getContext(), "100을 초과하지 마세요!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            def.setValue(Integer.parseInt(et.getText().toString()));
+
+            value = Integer.parseInt(et.getText().toString());
+
+            Map<String, Object> data = new HashMap<>();
+            data.put(name, value);
+
+            MainFragment.fireStore_MyDB.collection("hope").document("hope").update(data);
+            Toast.makeText(getContext(), "업데이트 됐습니다!", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getContext(), "프리셋모드 적용중입니다.(제어불가능)", Toast.LENGTH_SHORT).show();
         }
-        if (Integer.parseInt(et.getText().toString()) > 100) {
-            Toast.makeText(getContext(),"100을 초과하지 마세요!",Toast.LENGTH_SHORT).show();
-            return;
-        }
-        def.setValue(Integer.parseInt(et.getText().toString()));
-
-        value = Integer.parseInt(et.getText().toString());
-
-        Map<String,Object>data = new HashMap<>();
-        data.put(name,value);
-
-        MainFragment.fireStore_MyDB.collection("hope").document("hope").update(data);
-        Toast.makeText(getContext(),"업데이트 됐습니다!",Toast.LENGTH_SHORT).show();
     }
 
     public void setChangeDataListener(){
