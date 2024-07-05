@@ -178,6 +178,7 @@
                         app:cardCornerRadius="10dp">
 
                         <TextView
+                            android:id="@+id/presetHubBtn"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:fontFamily="@font/netmarble_medium"
@@ -201,6 +202,7 @@
                         app:cardCornerRadius="10dp">
 
                         <TextView
+                            android:id="@+id/presetNowBtn"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:fontFamily="@font/netmarble_medium"
@@ -224,6 +226,7 @@
                         app:cardCornerRadius="10dp">
 
                         <TextView
+                            android:id="@+id/presetFixBtn"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:fontFamily="@font/netmarble_medium"

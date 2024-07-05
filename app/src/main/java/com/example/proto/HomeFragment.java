@@ -235,8 +235,6 @@ public class HomeFragment extends Fragment {
                 }
 
                 HomeFragment.growthDateTV.setText("" + HomeFragment.growthDate + "일");
-
-                MainFragment.fireStore_MyDB.collection("preset")
             }
         });
     }

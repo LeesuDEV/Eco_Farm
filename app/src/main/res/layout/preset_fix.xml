@@ -1,0 +1,508 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="380dp"
+    android:layout_height="600dp"
+    android:layout_gravity="center"
+    app:cardCornerRadius="10dp">
+    <LinearLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:background="#ffffff"
+        android:weightSum="10">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:background="#D0FABA">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="프리셋 수정"
+                android:textSize="30sp"
+                android:textColor="#ffffff"
+                android:fontFamily="@font/netmarble_bold"
+                />
+        </FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="9"
+            android:orientation="vertical"
+            android:background="#dfdfdf"
+            android:padding="20dp"
+            android:weightSum="10">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.25"
+                app:cardCornerRadius="10dp"
+                android:layout_marginBottom="10dp">
+                <EditText
+                    android:id="@+id/PresetNameTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#ffffff"
+                    android:layout_weight="1.5"
+                    android:fontFamily="@font/netmarble_bold"
+                    android:gravity="center"
+                    android:shadowColor="#000000"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="1"
+                    android:text="상추[Admin]"
+                    android:textColor="#FFBF00"
+                    android:textSize="25sp"/>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.25"
+                app:cardCornerRadius="10dp"
+                android:layout_marginBottom="10dp">
+                <EditText
+                    android:id="@+id/PresetCommentTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#FFFFFF"
+                    android:layout_weight="1.5"
+                    android:fontFamily="@font/netmarble_bold"
+                    android:gravity="center"
+                    android:shadowColor="#000000"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="1"
+                    android:text="습한환경에서 키워주세요"
+                    android:textColor="#FFC000"
+                    android:textSize="15sp"/>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="6"
+                app:cardCornerRadius="10dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:weightSum="10"
+                    android:background="#FFFFFF"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1.5"
+                        android:orientation="horizontal"
+                        android:weightSum="10">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:orientation="vertical">
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="10dp"
+                            android:layout_weight="8"
+                            android:orientation="horizontal"
+                            android:padding="5dp"
+                            android:weightSum="9">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="3"
+                                android:fontFamily="@font/netmarble_bold"
+                                android:gravity="center"
+                                android:shadowColor="#000000"
+                                android:shadowDx="2"
+                                android:shadowDy="2"
+                                android:shadowRadius="2"
+                                android:text="온도"
+                                android:textColor="#FF5A5A"
+                                android:textSize="20sp" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="3"
+                                android:fontFamily="@font/netmarble_bold"
+                                android:gravity="center"
+                                android:shadowColor="#000000"
+                                android:shadowDx="2"
+                                android:shadowDy="2"
+                                android:shadowRadius="2"
+                                android:text="습도"
+                                android:textColor="#67CCFB"
+                                android:textSize="20sp" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="3"
+                                android:fontFamily="@font/netmarble_bold"
+                                android:gravity="center"
+                                android:shadowColor="#000000"
+                                android:shadowDx="2"
+                                android:shadowDy="2"
+                                android:shadowRadius="2"
+                                android:text="광량"
+                                android:textColor="#FFD60A"
+                                android:textSize="20sp" />
+
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="8"
+                        android:orientation="horizontal"
+                        android:weightSum="10">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:orientation="vertical"
+                            android:weightSum="4">
+
+                            <TextView
+                                android:id="@+id/week1TV"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/netmarble_bold"
+                                android:gravity="center"
+                                android:shadowColor="#000000"
+                                android:shadowDx="2"
+                                android:shadowDy="2"
+                                android:shadowRadius="2"
+                                android:text="1주"
+                                android:textColor="#78FF6E"
+                                android:textSize="20sp" />
+
+                            <TextView
+                                android:id="@+id/week2TV"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/netmarble_bold"
+                                android:gravity="center"
+                                android:shadowColor="#000000"
+                                android:shadowDx="2"
+                                android:shadowDy="2"
+                                android:shadowRadius="2"
+                                android:text="2주"
+                                android:textColor="#E6E6E6"
+                                android:textSize="20sp" />
+
+                            <TextView
+                                android:id="@+id/week3TV"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/netmarble_bold"
+                                android:gravity="center"
+                                android:shadowColor="#000000"
+                                android:shadowDx="2"
+                                android:shadowDy="2"
+                                android:shadowRadius="2"
+                                android:text="3주"
+                                android:textColor="#E6E6E6"
+                                android:textSize="20sp" />
+
+                            <TextView
+                                android:id="@+id/week4TV"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/netmarble_bold"
+                                android:gravity="center"
+                                android:shadowColor="#000000"
+                                android:shadowDx="2"
+                                android:shadowDy="2"
+                                android:shadowRadius="2"
+                                android:text="4주"
+                                android:textColor="#E6E6E6"
+                                android:textSize="20sp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="8"
+                            android:orientation="vertical">
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginRight="10dp"
+                                app:cardCornerRadius="10dp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="#D89A69"
+                                    android:orientation="vertical"
+                                    android:weightSum="4">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="1"
+                                        android:background="#D89A69"
+                                        android:orientation="horizontal"
+                                        android:weightSum="3">
+
+                                        <EditText
+                                            android:inputType="number"
+                                            android:id="@+id/Preset1WeekTempTV"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:fontFamily="@font/netmarble_medium"
+                                            android:gravity="center"
+                                            android:text="30"
+                                            android:textColor="#78FF6E"
+                                            android:textSize="17sp" />
+
+                                        <EditText
+                                            android:inputType="number"
+                                            android:id="@+id/Preset1WeekHumTV"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:fontFamily="@font/netmarble_medium"
+                                            android:gravity="center"
+                                            android:text="30"
+                                            android:textColor="#78FF6E"
+                                            android:textSize="17sp" />
+
+                                        <EditText
+                                            android:inputType="number"
+                                            android:id="@+id/Preset1WeekBrightnessTV"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:fontFamily="@font/netmarble_medium"
+                                            android:gravity="center"
+                                            android:text="30"
+                                            android:textColor="#78FF6E"
+                                            android:textSize="17sp" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="1"
+                                        android:background="#D89A69"
+                                        android:orientation="horizontal"
+                                        android:weightSum="3">
+
+                                        <EditText
+                                            android:inputType="number"
+                                            android:id="@+id/Preset2WeekTempTV"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:fontFamily="@font/netmarble_medium"
+                                            android:gravity="center"
+                                            android:text="30"
+                                            android:textColor="#FFFFFF"
+                                            android:textSize="17sp" />
+
+                                        <EditText
+                                            android:inputType="number"
+                                            android:id="@+id/Preset2WeekHumTV"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:fontFamily="@font/netmarble_medium"
+                                            android:gravity="center"
+                                            android:text="30"
+                                            android:textColor="#FFFFFF"
+                                            android:textSize="17sp" />
+
+                                        <EditText
+                                            android:inputType="number"
+                                            android:id="@+id/Preset2WeekBrightnessTV"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:fontFamily="@font/netmarble_medium"
+                                            android:gravity="center"
+                                            android:text="30"
+                                            android:textColor="#FFFFFF"
+                                            android:textSize="17sp" />
+
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="1"
+                                        android:background="#D89A69"
+                                        android:orientation="horizontal"
+                                        android:weightSum="3">
+
+                                        <EditText
+                                            android:inputType="number"
+                                            android:id="@+id/Preset3WeekTempTV"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:fontFamily="@font/netmarble_medium"
+                                            android:gravity="center"
+                                            android:text="30"
+                                            android:textColor="#FFFFFF"
+                                            android:textSize="17sp" />
+
+                                        <EditText
+                                            android:inputType="number"
+                                            android:id="@+id/Preset3WeekHumTV"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:fontFamily="@font/netmarble_medium"
+                                            android:gravity="center"
+                                            android:text="30"
+                                            android:textColor="#FFFFFF"
+                                            android:textSize="17sp" />
+
+                                        <EditText
+                                            android:inputType="number"
+                                            android:id="@+id/Preset3WeekBrightnessTV"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:fontFamily="@font/netmarble_medium"
+                                            android:gravity="center"
+                                            android:text="30"
+                                            android:textColor="#FFFFFF"
+                                            android:textSize="17sp" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="1"
+                                        android:background="#D89A69"
+                                        android:orientation="horizontal"
+                                        android:weightSum="3">
+
+                                        <EditText
+                                            android:inputType="number"
+                                            android:id="@+id/Preset4WeekTempTV"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:fontFamily="@font/netmarble_medium"
+                                            android:gravity="center"
+                                            android:text="30"
+                                            android:textColor="#FFFFFF"
+                                            android:textSize="17sp" />
+
+                                        <EditText
+                                            android:inputType="number"
+                                            android:id="@+id/Preset4WeekHumTV"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:fontFamily="@font/netmarble_medium"
+                                            android:gravity="center"
+                                            android:text="30"
+                                            android:textColor="#FFFFFF"
+                                            android:textSize="17sp" />
+
+                                        <EditText
+                                            android:inputType="number"
+                                            android:id="@+id/Preset4WeekBrightnessTV"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:fontFamily="@font/netmarble_medium"
+                                            android:gravity="center"
+                                            android:text="30"
+                                            android:textColor="#FFFFFF"
+                                            android:textSize="17sp" />
+
+                                    </LinearLayout>
+                                </LinearLayout>
+                            </androidx.cardview.widget.CardView>
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.5"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:padding="10dp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    app:cardCornerRadius="15dp"
+                    android:layout_weight="1"
+                    android:layout_marginRight="20dp">
+
+                    <TextView
+                        android:id="@+id/PresetFixSubmitBtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#FFBB11"
+                        android:fontFamily="@font/netmarble_bold"
+                        android:gravity="center"
+                        android:shadowColor="#000000"
+                        android:shadowDx="2"
+                        android:shadowDy="2"
+                        android:shadowRadius="2"
+                        android:text="프리셋 수정할래요 !"
+                        android:textColor="#ffffff"
+                        android:textSize="17dp"/>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    app:cardCornerRadius="15dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/PresetHubRegisterBtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#95E662"
+                        android:fontFamily="@font/netmarble_bold"
+                        android:gravity="center"
+                        android:shadowColor="#000000"
+                        android:shadowDx="2"
+                        android:shadowDy="2"
+                        android:shadowRadius="2"
+                        android:text="허브에 등록할래요 !"
+                        android:textColor="#ffffff"
+                        android:textSize="17dp"/>
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

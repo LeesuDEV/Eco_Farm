@@ -1,6 +1,9 @@
 package com.example.proto;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,9 +21,16 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+
+import org.w3c.dom.Text;
 
 public class PresetFragment extends Fragment {
-    TextView currentPresetTV,currentValueTV,currentWeekTV;
+    TextView currentPresetTV, currentValueTV, currentWeekTV;
+    String week;
+    String week_str;
+    TextView presetHubBtn, presetNowBtn, presetFixBtn;
 
     public PresetFragment() {
 
@@ -39,6 +49,10 @@ public class PresetFragment extends Fragment {
         currentValueTV = view.findViewById(R.id.currentValueTV);
         currentWeekTV = view.findViewById(R.id.currentWeekTV);
 
+        presetHubBtn = view.findViewById(R.id.presetHubBtn);
+        presetNowBtn = view.findViewById(R.id.presetNowBtn);
+        presetFixBtn = view.findViewById(R.id.presetFixBtn);
+
         updateValue();
 
         MainFragment.fireStore_MyDB.collection("preset").document("preset").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -48,46 +62,84 @@ public class PresetFragment extends Fragment {
             }
         });
 
+        presetHubBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PresetHubDialog dialog = new PresetHubDialog(getContext());
+                dialog.show();
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT)); //다이어로그 배경 투명처리
+            }
+        });
+
+        presetNowBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PresetNowDialog dialog = new PresetNowDialog(getContext());
+                dialog.show();
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT)); //다이어로그 배경 투명처리
+            }
+        });
+
+
+        presetFixBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PresetFixDialog dialog = new PresetFixDialog(getContext());
+                dialog.show();
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT)); //다이어로그 배경 투명처리
+            }
+        });
     }
 
     // 텍스트뷰에 값을 업데이트 해주는 메소드
-    public void updateValue(){
+    public void updateValue() {
         // 몇주차인지 업데이트
-        MainFragment.fireStore_MyDB.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+        MainFragment.fireStore_MyDB.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                currentWeekTV.setText(documentSnapshot.get("WEEK").toString());
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                if (error != null) {
+                    Log.d("Faild", "Failed EventListener");
+                    return;
+                }
+
+                week = value.get("WEEK").toString();
+                currentWeekTV.setText(week + "주차");
             }
         });
 
         //사용하고 있는 프리셋이름과 현재주차 값 로딩
-        MainFragment.fireStore_MyDB.collection("preset").document("preset").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+        MainFragment.fireStore_MyDB.collection("preset").document("preset").addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                String name = documentSnapshot.getString("name");
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                if (error != null) {
+                    Log.d("Failed Preset Listener", "Failed Preset Listener");
+                    return;
+                }
+
+                String name = value.getString("name");
                 currentPresetTV.setText(name);
 
                 String[] tmp_ls;
-                switch (MainFragment.week) {
-                    case 1:
-                        tmp_ls = documentSnapshot.getString("1week").split(";");
-                        currentValueTV.setText("온도 : "+tmp_ls[0]+"˚습도 : "+tmp_ls[1]+"%  조도 : "+tmp_ls[2]+"%");
+                switch (week) {
+                    case "1":
+                        week_str = "1week";
                         break;
-                    case 2:
-                        tmp_ls = documentSnapshot.getString("2week").split(";");
-                        currentValueTV.setText("온도 : "+tmp_ls[0]+"˚습도 : "+tmp_ls[1]+"%  조도 : "+tmp_ls[2]+"%");
+                    case "2":
+                        week_str = "2week";
                         break;
-                    case 3:
-                        tmp_ls = documentSnapshot.getString("3week").split(";");
-                        currentValueTV.setText("온도 : "+tmp_ls[0]+"˚습도 : "+tmp_ls[1]+"%  조도 : "+tmp_ls[2]+"%");
+                    case "3":
+                        week_str = "3week";
                         break;
-                    case 4:
-                        tmp_ls = documentSnapshot.getString("4week").split(";");
-                        currentValueTV.setText("온도 : "+tmp_ls[0]+"˚습도 : "+tmp_ls[1]+"%  조도 : "+tmp_ls[2]+"%");
-                        break;
-                    default:
+                    case "4":
+                        week_str = "4week";
                         break;
                 }
+
+                //텍스트뷰에 현재주차 프리셋 온습도 업데이트
+                tmp_ls = value.getString(week_str).split(";");
+                currentValueTV.setText("온도 : " + tmp_ls[0] + "˚습도 : " + tmp_ls[1] + "%  조도 : " + tmp_ls[2] + "%");
+
+
             }
         });
     }

@@ -20,6 +20,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -42,6 +43,7 @@ public class MainFragment extends AppCompatActivity {
     static DatabaseReference realtimeDB_Now;
 
     static DocumentReference fireStore_MyDB; //DB값 -UID처리 돼있음
+    static CollectionReference cropsHub_DB; // 작물허브 DB
 
     static FirebaseDatabase fireRealtimeDB = FirebaseDatabase.getInstance(); // 리얼타임 데이터베이스 변수선언
     static FirebaseFirestore fireStoreDB = FirebaseFirestore.getInstance(); // 파이어스토어 데이터베이스 변수선언
@@ -134,6 +136,8 @@ public class MainFragment extends AppCompatActivity {
 
                 realtimeDB_Hope = fireRealtimeDB.getReference("USER/" + uid + "/hope"); // Firebase Realtime Database 인스턴스의 참조를 생성
                 realtimeDB_Now = fireRealtimeDB.getReference("USER/" + uid + "/now");
+
+                cropsHub_DB = FirebaseFirestore.getInstance().collection("crops");
 
                 fireStore_MyDB = FirebaseFirestore.getInstance().collection("users").document(uid); // FireStore값 참조
 
