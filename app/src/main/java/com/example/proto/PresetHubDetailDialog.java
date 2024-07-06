@@ -36,6 +36,7 @@ public class PresetHubDetailDialog extends Dialog {
     TextView PresetHitTV;
     TextView PresetSubmitBtn;
     TextView hitTV;
+    int selectNum;
 
     public PresetHubDetailDialog(Context context) {
         super(context);
@@ -88,7 +89,7 @@ public class PresetHubDetailDialog extends Dialog {
                     });
 
                     Map<String,Object>hitObj = new HashMap<>();
-                    hitObj.put(name,true);
+                    hitObj.put(String.valueOf(selectNum),true);
 
                     MainFragment.fireStore_MyDB.collection("preset").document("hitPreset").update(hitObj);
                 } else {
@@ -105,7 +106,7 @@ public class PresetHubDetailDialog extends Dialog {
                     });
 
                     Map<String,Object>hitObj = new HashMap<>();
-                    hitObj.put(name,false);
+                    hitObj.put(String.valueOf(selectNum),false);
 
                     MainFragment.fireStore_MyDB.collection("preset").document("hitPreset").update(hitObj);
                 }
@@ -159,18 +160,18 @@ public class PresetHubDetailDialog extends Dialog {
 
                 PresetHitTV.setText(""+value.get("hit").toString());
 
+                //글번호로 좋아요를 판별하기 위한 변수
+                selectNum = (int) value.getLong("number").longValue();
+
                 MainFragment.fireStore_MyDB.collection("preset").document("hitPreset").addSnapshotListener(new EventListener<DocumentSnapshot>() {
                     @Override
                     public void onEvent(@Nullable DocumentSnapshot mValue, @Nullable FirebaseFirestoreException error) {
-                        String name = value.getId().toString();
-
-                        // 스냅샷 -> map으로 변환
-                        Map <String, Object> obj = mValue.getData();
+                        String num = String.valueOf(selectNum);
 
                         // 글을 본적이 있나요?
-                        if (obj.containsKey(name)){
+                        if (mValue.contains(num)){
                             // 이미 내가 좋아요를 누른 글이라면? (true)
-                            if (Boolean.parseBoolean(obj.get(name).toString())){
+                            if (mValue.getBoolean(num)){
                                 hitTV.setText("♥");
                             } else {
                                 hitTV.setText("♡");
