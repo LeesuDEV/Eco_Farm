@@ -3,6 +3,7 @@ package com.example.proto;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -32,6 +33,9 @@ public class PresetFixDialog extends Dialog {
     EditText Preset4WeekTempTV, Preset4WeekHumTV, Preset4WeekBrightnessTV;
     TextView week1TV, week2TV, week3TV, week4TV;
     TextView PresetFixSubmitBtn,PresetHubRegisterBtn;
+
+    static String registerItem;
+    static Boolean existUID = false;
 
 
     public PresetFixDialog(Context context) {
@@ -75,11 +79,30 @@ public class PresetFixDialog extends Dialog {
             }
         });
 
+        PresetHubRegisterBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PresetRegisterDialog dialog = new PresetRegisterDialog(context, new PresetRegisterDialog.PresetDeleteDialogListener() {
+                    @Override
+                    public void onDialogDismissed() {
+                        // 내 uid로 등록된 글이 없다면
+                        if (!existUID) {
+                            registerPreset();
+                        } else {
+                            Toast.makeText(context,"이미 내 프리셋이 허브에 등록돼있어요!",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+                dialog.show();
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            }
+        });
+
 
         loadMyPreset();
     }
 
-    public void loadMyPreset() {
+    private void loadMyPreset() {
         MainFragment.fireStore_MyDB.collection("preset").document("preset").addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
@@ -147,7 +170,7 @@ public class PresetFixDialog extends Dialog {
         });
     }
 
-    public void applyEditPreset() {
+    private void applyEditPreset() {
         String name = PresetNameTV.getText().toString();
         String comment = PresetCommentTV.getText().toString();
 
@@ -188,6 +211,53 @@ public class PresetFixDialog extends Dialog {
             @Override
             public void onSuccess(Void unused) {
                 Toast.makeText(context,"프리셋 저장에 성공했어요!",Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void registerPreset(){
+        String name = PresetNameTV.getText().toString();
+        String comment = PresetCommentTV.getText().toString();
+        String uid = MainFragment.uid;
+
+        String week1_temp = Preset1WeekTempTV.getText().toString();
+        String week1_hum = Preset1WeekHumTV.getText().toString();
+        String week1_brightness = Preset1WeekBrightnessTV.getText().toString();
+        String week2_temp = Preset2WeekTempTV.getText().toString();
+        String week2_hum = Preset2WeekHumTV.getText().toString();
+        String week2_brightness = Preset2WeekBrightnessTV.getText().toString();
+        String week3_temp = Preset3WeekTempTV.getText().toString();
+        String week3_hum = Preset3WeekHumTV.getText().toString();
+        String week3_brightness = Preset3WeekBrightnessTV.getText().toString();
+        String week4_temp = Preset4WeekTempTV.getText().toString();
+        String week4_hum = Preset4WeekHumTV.getText().toString();
+        String week4_brightness = Preset4WeekBrightnessTV.getText().toString();
+
+        String week1 = week1_temp+";"+week1_hum+";"+week1_brightness;
+        String week2 = week2_temp+";"+week2_hum+";"+week2_brightness;
+        String week3 = week3_temp+";"+week3_hum+";"+week3_brightness;
+        String week4 = week4_temp+";"+week4_hum+";"+week4_brightness;
+
+        //텍스트 중 하나라도 비어있다면.
+        if (name.isEmpty() || comment.isEmpty() || week1_hum.isEmpty() || week1_brightness.isEmpty() || week1_temp.isEmpty() || week2_brightness.isEmpty() || week2_hum.isEmpty() || week2_temp.isEmpty() || week3_temp.isEmpty() || week3_hum.isEmpty() || week3_brightness.isEmpty() || week4_brightness.isEmpty() || week4_hum.isEmpty() || week4_temp.isEmpty()){
+            Toast.makeText(context,"빈칸이 존재해요!",Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        //Map에 데이터 준비
+        Map<String, Object>obj = new HashMap<>();
+        obj.put("uid",uid);
+        obj.put("comment",comment);
+        obj.put("1week",week1);
+        obj.put("2week",week2);
+        obj.put("3week",week3);
+        obj.put("4week",week4);
+        obj.put("hit",0);
+
+        MainFragment.cropsHub_DB.document(name).set(obj).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Toast.makeText(context,name+"등록에 성공했어요!",Toast.LENGTH_SHORT).show();
             }
         });
     }
