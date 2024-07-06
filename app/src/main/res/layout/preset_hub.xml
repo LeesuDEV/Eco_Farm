@@ -33,7 +33,63 @@
             android:layout_weight="9"
             android:orientation="vertical"
             android:background="#dfdfdf"
-            android:padding="20dp">
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="20dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:weightSum="10">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1.5"
+                    android:text="번호"
+                    android:shadowColor="#000000"
+                    android:shadowRadius="5"
+                    android:shadowDx="2"
+                    android:shadowDy="2"
+                    android:textSize="20sp"
+                    android:textColor="#ffffff"
+                    android:gravity="center"
+                    android:fontFamily="@font/netmarble_bold"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="5"
+                    android:text="이름"
+                    android:shadowColor="#000000"
+                    android:shadowRadius="5"
+                    android:shadowDx="2"
+                    android:shadowDy="2"
+                    android:textSize="20sp"
+                    android:textColor="#ffffff"
+                    android:gravity="center"
+                    android:fontFamily="@font/netmarble_bold"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1.5"
+                    android:text="관심"
+                    android:shadowColor="#000000"
+                    android:shadowRadius="5"
+                    android:shadowDx="2"
+                    android:shadowDy="2"
+                    android:textSize="20sp"
+                    android:textColor="#FFB7B7"
+                    android:gravity="center"
+                    android:fontFamily="@font/netmarble_bold"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:text=""
+                    android:textSize="20sp"
+                    android:textColor="#ffffff"
+                    android:gravity="center"
+                    android:fontFamily="@font/netmarble_bold" />
+            </LinearLayout>
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

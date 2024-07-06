@@ -32,11 +32,11 @@ public class PresetFixDialog extends Dialog {
     EditText Preset3WeekTempTV, Preset3WeekHumTV, Preset3WeekBrightnessTV;
     EditText Preset4WeekTempTV, Preset4WeekHumTV, Preset4WeekBrightnessTV;
     TextView week1TV, week2TV, week3TV, week4TV;
-    TextView PresetFixSubmitBtn,PresetHubRegisterBtn;
+    TextView PresetFixSubmitBtn, PresetHubRegisterBtn;
 
     static String registerItem;
     static Boolean existUID = false;
-
+    int num;
 
     public PresetFixDialog(Context context) {
         super(context);
@@ -89,7 +89,7 @@ public class PresetFixDialog extends Dialog {
                         if (!existUID) {
                             registerPreset();
                         } else {
-                            Toast.makeText(context,"이미 내 프리셋이 허브에 등록돼있어요!",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, "이미 내 프리셋이 허브에 등록돼있어요!", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -187,35 +187,35 @@ public class PresetFixDialog extends Dialog {
         String week4_hum = Preset4WeekHumTV.getText().toString();
         String week4_brightness = Preset4WeekBrightnessTV.getText().toString();
 
-        String week1 = week1_temp+";"+week1_hum+";"+week1_brightness;
-        String week2 = week2_temp+";"+week2_hum+";"+week2_brightness;
-        String week3 = week3_temp+";"+week3_hum+";"+week3_brightness;
-        String week4 = week4_temp+";"+week4_hum+";"+week4_brightness;
+        String week1 = week1_temp + ";" + week1_hum + ";" + week1_brightness;
+        String week2 = week2_temp + ";" + week2_hum + ";" + week2_brightness;
+        String week3 = week3_temp + ";" + week3_hum + ";" + week3_brightness;
+        String week4 = week4_temp + ";" + week4_hum + ";" + week4_brightness;
 
         //텍스트 중 하나라도 비어있다면.
-        if (name.isEmpty() || comment.isEmpty() || week1_hum.isEmpty() || week1_brightness.isEmpty() || week1_temp.isEmpty() || week2_brightness.isEmpty() || week2_hum.isEmpty() || week2_temp.isEmpty() || week3_temp.isEmpty() || week3_hum.isEmpty() || week3_brightness.isEmpty() || week4_brightness.isEmpty() || week4_hum.isEmpty() || week4_temp.isEmpty()){
-            Toast.makeText(context,"빈칸이 존재해요!",Toast.LENGTH_SHORT).show();
+        if (name.isEmpty() || comment.isEmpty() || week1_hum.isEmpty() || week1_brightness.isEmpty() || week1_temp.isEmpty() || week2_brightness.isEmpty() || week2_hum.isEmpty() || week2_temp.isEmpty() || week3_temp.isEmpty() || week3_hum.isEmpty() || week3_brightness.isEmpty() || week4_brightness.isEmpty() || week4_hum.isEmpty() || week4_temp.isEmpty()) {
+            Toast.makeText(context, "빈칸이 존재해요!", Toast.LENGTH_SHORT).show();
             return;
         }
 
         //Map에 데이터 준비
-        Map<String, Object>obj = new HashMap<>();
-        obj.put("name",name);
-        obj.put("comment",comment);
-        obj.put("1week",week1);
-        obj.put("2week",week2);
-        obj.put("3week",week3);
-        obj.put("4week",week4);
+        Map<String, Object> obj = new HashMap<>();
+        obj.put("name", name);
+        obj.put("comment", comment);
+        obj.put("1week", week1);
+        obj.put("2week", week2);
+        obj.put("3week", week3);
+        obj.put("4week", week4);
 
         MainFragment.fireStore_MyDB.collection("preset").document("preset").update(obj).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
-                Toast.makeText(context,"프리셋 저장에 성공했어요!",Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "프리셋 저장에 성공했어요!", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    private void registerPreset(){
+    private void registerPreset() {
         String name = PresetNameTV.getText().toString();
         String comment = PresetCommentTV.getText().toString();
         String uid = MainFragment.uid;
@@ -233,31 +233,45 @@ public class PresetFixDialog extends Dialog {
         String week4_hum = Preset4WeekHumTV.getText().toString();
         String week4_brightness = Preset4WeekBrightnessTV.getText().toString();
 
-        String week1 = week1_temp+";"+week1_hum+";"+week1_brightness;
-        String week2 = week2_temp+";"+week2_hum+";"+week2_brightness;
-        String week3 = week3_temp+";"+week3_hum+";"+week3_brightness;
-        String week4 = week4_temp+";"+week4_hum+";"+week4_brightness;
+        String week1 = week1_temp + ";" + week1_hum + ";" + week1_brightness;
+        String week2 = week2_temp + ";" + week2_hum + ";" + week2_brightness;
+        String week3 = week3_temp + ";" + week3_hum + ";" + week3_brightness;
+        String week4 = week4_temp + ";" + week4_hum + ";" + week4_brightness;
 
         //텍스트 중 하나라도 비어있다면.
-        if (name.isEmpty() || comment.isEmpty() || week1_hum.isEmpty() || week1_brightness.isEmpty() || week1_temp.isEmpty() || week2_brightness.isEmpty() || week2_hum.isEmpty() || week2_temp.isEmpty() || week3_temp.isEmpty() || week3_hum.isEmpty() || week3_brightness.isEmpty() || week4_brightness.isEmpty() || week4_hum.isEmpty() || week4_temp.isEmpty()){
-            Toast.makeText(context,"빈칸이 존재해요!",Toast.LENGTH_SHORT).show();
+        if (name.isEmpty() || comment.isEmpty() || week1_hum.isEmpty() || week1_brightness.isEmpty() || week1_temp.isEmpty() || week2_brightness.isEmpty() || week2_hum.isEmpty() || week2_temp.isEmpty() || week3_temp.isEmpty() || week3_hum.isEmpty() || week3_brightness.isEmpty() || week4_brightness.isEmpty() || week4_hum.isEmpty() || week4_temp.isEmpty()) {
+            Toast.makeText(context, "빈칸이 존재해요!", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        //Map에 데이터 준비
-        Map<String, Object>obj = new HashMap<>();
-        obj.put("uid",uid);
-        obj.put("comment",comment);
-        obj.put("1week",week1);
-        obj.put("2week",week2);
-        obj.put("3week",week3);
-        obj.put("4week",week4);
-        obj.put("hit",0);
-
-        MainFragment.cropsHub_DB.document(name).set(obj).addOnSuccessListener(new OnSuccessListener<Void>() {
+        MainFragment.fireStoreDB.collection("hub").document("hubIndex").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
-            public void onSuccess(Void unused) {
-                Toast.makeText(context,name+"등록에 성공했어요!",Toast.LENGTH_SHORT).show();
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                num = (int) documentSnapshot.getLong("index").longValue();
+                num ++;
+
+                //Map에 데이터 준비
+                Map<String, Object> obj = new HashMap<>();
+                obj.put("uid", uid);
+                obj.put("comment", comment);
+                obj.put("1week", week1);
+                obj.put("2week", week2);
+                obj.put("3week", week3);
+                obj.put("4week", week4);
+                obj.put("hit", 0);
+                obj.put("number", num);
+
+                Map<String, Object> numObj = new HashMap<>();
+                numObj.put("index",num);
+
+                MainFragment.fireStoreDB.collection("hub").document("hubIndex").update(numObj); // 최신번호 갱신
+
+                MainFragment.cropsHub_DB.document(name).set(obj).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(context, name + "등록에 성공했어요!", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
     }

@@ -18,9 +18,13 @@ import androidx.core.content.res.ResourcesCompat;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FieldPath;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class PresetHubDetailDialog extends Dialog {
     Context context;
@@ -31,6 +35,7 @@ public class PresetHubDetailDialog extends Dialog {
     TextView Preset4WeekTempTV,Preset4WeekHumTV,Preset4WeekBrightnessTV;
     TextView PresetHitTV;
     TextView PresetSubmitBtn;
+    TextView hitTV;
 
     public PresetHubDetailDialog(Context context) {
         super(context);
@@ -61,6 +66,52 @@ public class PresetHubDetailDialog extends Dialog {
         PresetHitTV = findViewById(R.id.PresetHitTV);
         PresetSubmitBtn = findViewById(R.id.PresetSubmitBtn);
 
+        hitTV = findViewById(R.id.hitTV);
+
+        hitTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String name = PresetNameTV.getText().toString();
+                int value = Integer.parseInt(PresetHitTV.getText().toString());
+
+                if(hitTV.getText().toString().equals("♡")){
+                    value ++;
+
+                    Map<String,Object>obj = new HashMap<>();
+                    obj.put("hit",value);
+
+                    MainFragment.cropsHub_DB.document(name).update(obj).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            Toast.makeText(context,"이 글을 좋아합니다",Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                    Map<String,Object>hitObj = new HashMap<>();
+                    hitObj.put(name,true);
+
+                    MainFragment.fireStore_MyDB.collection("preset").document("hitPreset").update(hitObj);
+                } else {
+                    value --;
+
+                    Map<String,Object>obj = new HashMap<>();
+                    obj.put("hit",value);
+
+                    MainFragment.cropsHub_DB.document(name).update(obj).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            Toast.makeText(context,"좋아요를 취소합니다",Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                    Map<String,Object>hitObj = new HashMap<>();
+                    hitObj.put(name,false);
+
+                    MainFragment.fireStore_MyDB.collection("preset").document("hitPreset").update(hitObj);
+                }
+            }
+        });
+
          loadPresetDetail(); //세부정보 가져오기
     }
 
@@ -69,6 +120,8 @@ public class PresetHubDetailDialog extends Dialog {
             Toast.makeText(context,"No selected Item",Toast.LENGTH_SHORT).show();
             return;
         }
+
+
 
         MainFragment.cropsHub_DB.document(PresetHubDialog.selectedItem).addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
@@ -105,6 +158,29 @@ public class PresetHubDetailDialog extends Dialog {
                 Preset4WeekBrightnessTV.setText(week4[2]+"%");
 
                 PresetHitTV.setText(""+value.get("hit").toString());
+
+                MainFragment.fireStore_MyDB.collection("preset").document("hitPreset").addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable DocumentSnapshot mValue, @Nullable FirebaseFirestoreException error) {
+                        String name = value.getId().toString();
+
+                        // 스냅샷 -> map으로 변환
+                        Map <String, Object> obj = mValue.getData();
+
+                        // 글을 본적이 있나요?
+                        if (obj.containsKey(name)){
+                            // 이미 내가 좋아요를 누른 글이라면? (true)
+                            if (Boolean.parseBoolean(obj.get(name).toString())){
+                                hitTV.setText("♥");
+                            } else {
+                                hitTV.setText("♡");
+                            }
+                        } else {
+                            // 이 글을 좋아요를 누른적이 없는경우
+                            hitTV.setText("♡");
+                        }
+                    }
+                });
             }
         });
     }
