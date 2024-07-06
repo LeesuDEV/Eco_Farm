@@ -113,6 +113,14 @@ public class PresetHubDetailDialog extends Dialog {
             }
         });
 
+        PresetSubmitBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PresetSubmitDialog dialog = new PresetSubmitDialog(context);
+                dialog.show();
+            }
+        });
+
          loadPresetDetail(); //세부정보 가져오기
     }
 

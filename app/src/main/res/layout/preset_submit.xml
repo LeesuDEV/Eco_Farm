@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="300dp"
+    android:layout_height="200dp"
+    android:layout_gravity="center"
+    app:cardCornerRadius="10dp">
+    <LinearLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:background="#936C1E"
+        android:weightSum="10">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:text="정말로 적용할래요?"
+            android:textColor="#79F666"
+            android:textSize="28sp"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:shadowDy="3"
+            android:shadowDx="3"
+            android:shadowRadius="3"
+            android:shadowColor="#000000"
+            android:fontFamily="@font/netmarble_bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:text="기존 프리셋이 사라집니다!"
+            android:textColor="#FFFFFF"
+            android:gravity="center"
+            android:textSize="19sp"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/netmarble_medium"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="4"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:padding="10dp">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                app:cardCornerRadius="15dp"
+                android:layout_weight="1"
+                android:layout_marginRight="20dp">
+
+                <TextView
+                    android:id="@+id/PresetSubmitBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#FFBB11"
+                    android:fontFamily="@font/netmarble_bold"
+                    android:gravity="center"
+                    android:shadowColor="#000000"
+                    android:shadowDx="2"
+                    android:shadowDy="2"
+                    android:shadowRadius="2"
+                    android:text="적용할래요"
+                    android:textColor="#ffffff"
+                    android:textSize="17dp"/>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                app:cardCornerRadius="15dp"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/CancelBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#95E662"
+                    android:fontFamily="@font/netmarble_bold"
+                    android:gravity="center"
+                    android:shadowColor="#000000"
+                    android:shadowDx="2"
+                    android:shadowDy="2"
+                    android:shadowRadius="2"
+                    android:text="안할래"
+                    android:textColor="#ffffff"
+                    android:textSize="17dp"/>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
