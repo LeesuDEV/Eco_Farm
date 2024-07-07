@@ -31,6 +31,8 @@ import java.util.Map;
 public class PresetHubDetailDialog extends Dialog {
     Context context;
     TextView PresetNameTV, PresetCommentTV;
+
+    TextView Preset1WeekScopeTV, Preset2WeekScopeTV, Preset3WeekScopeTV,Preset4WeekScopeTV;
     TextView Preset1WeekTempTV, Preset1WeekHumTV, Preset1WeekBrightnessTV;
     TextView Preset2WeekTempTV, Preset2WeekHumTV, Preset2WeekBrightnessTV;
     TextView Preset3WeekTempTV, Preset3WeekHumTV, Preset3WeekBrightnessTV;
@@ -54,6 +56,11 @@ public class PresetHubDetailDialog extends Dialog {
 
         PresetNameTV = findViewById(R.id.PresetNameTV);
         PresetCommentTV = findViewById(R.id.PresetCommentTV);
+
+        Preset1WeekScopeTV = findViewById(R.id.Preset1WeekScopeTV);
+        Preset2WeekScopeTV = findViewById(R.id.Preset2WeekScopeTV);
+        Preset3WeekScopeTV = findViewById(R.id.Preset3WeekScopeTV);
+        Preset4WeekScopeTV = findViewById(R.id.Preset4WeekScopeTV);
 
         Preset1WeekTempTV = findViewById(R.id.Preset1WeekTempTV);
         Preset1WeekHumTV = findViewById(R.id.Preset1WeekHumTV);
@@ -161,21 +168,25 @@ public class PresetHubDetailDialog extends Dialog {
                 String[] week3 = value.get("3week").toString().split(";");
                 String[] week4 = value.get("4week").toString().split(";");
 
-                Preset1WeekTempTV.setText(week1[0] + "˚C");
-                Preset1WeekHumTV.setText(week1[1] + "%");
-                Preset1WeekBrightnessTV.setText(week1[2] + "%");
+                Preset1WeekScopeTV.setText("~"+week1[0]+"주");
+                Preset1WeekTempTV.setText(week1[1]+"˚C");
+                Preset1WeekHumTV.setText(week1[2]+"%");
+                Preset1WeekBrightnessTV.setText(week1[3]+"%");
 
-                Preset2WeekTempTV.setText(week2[0] + "˚C");
-                Preset2WeekHumTV.setText(week2[1] + "%");
-                Preset2WeekBrightnessTV.setText(week2[2] + "%");
+                Preset2WeekScopeTV.setText("~"+week2[0]+"주");
+                Preset2WeekTempTV.setText(week2[1]+"˚C");
+                Preset2WeekHumTV.setText(week2[2]+"%");
+                Preset2WeekBrightnessTV.setText(week2[3]+"%");
 
-                Preset3WeekTempTV.setText(week3[0] + "˚C");
-                Preset3WeekHumTV.setText(week3[1] + "%");
-                Preset3WeekBrightnessTV.setText(week3[2] + "%");
+                Preset3WeekScopeTV.setText("~"+week3[0]+"주");
+                Preset3WeekTempTV.setText(week3[1]+"˚C");
+                Preset3WeekHumTV.setText(week3[2]+"%");
+                Preset3WeekBrightnessTV.setText(week3[3]+"%");
 
-                Preset4WeekTempTV.setText(week4[0] + "˚C");
-                Preset4WeekHumTV.setText(week4[1] + "%");
-                Preset4WeekBrightnessTV.setText(week4[2] + "%");
+                Preset4WeekScopeTV.setText("~"+week4[0]+"주");
+                Preset4WeekTempTV.setText(week4[1]+"˚C");
+                Preset4WeekHumTV.setText(week4[2]+"%");
+                Preset4WeekBrightnessTV.setText(week4[3]+"%");
 
                 PresetHitTV.setText("" + value.get("hit").toString());
 

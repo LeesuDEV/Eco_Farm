@@ -63,7 +63,22 @@
                 android:layout_weight="8"
                 android:orientation="horizontal"
                 android:padding="5dp"
-                android:weightSum="9">
+                android:weightSum="12">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:fontFamily="@font/netmarble_bold"
+                    android:gravity="center"
+                    android:shadowColor="#000000"
+                    android:shadowDx="2"
+                    android:shadowDy="2"
+                    android:shadowRadius="2"
+                    android:text="~주차"
+                    android:textColor="#B2FFB0"
+                    android:textSize="20sp" />
+
 
                 <TextView
                     android:layout_width="0dp"
@@ -135,7 +150,7 @@
                     android:shadowDx="2"
                     android:shadowDy="2"
                     android:shadowRadius="2"
-                    android:text="1주"
+                    android:text="발아"
                     android:textColor="#FFFFFF"
                     android:textSize="20sp" />
 
@@ -149,7 +164,7 @@
                     android:shadowDx="2"
                     android:shadowDy="2"
                     android:shadowRadius="2"
-                    android:text="2주"
+                    android:text="묘목"
                     android:textColor="#FFFFFF"
                     android:textSize="20sp" />
 
@@ -163,7 +178,7 @@
                     android:shadowDx="2"
                     android:shadowDy="2"
                     android:shadowRadius="2"
-                    android:text="3주"
+                    android:text="생장"
                     android:textColor="#FFFFFF"
                     android:textSize="20sp" />
 
@@ -177,7 +192,7 @@
                     android:shadowDx="2"
                     android:shadowDy="2"
                     android:shadowRadius="2"
-                    android:text="4주"
+                    android:text="성숙"
                     android:textColor="#FFFFFF"
                     android:textSize="20sp" />
 
@@ -208,7 +223,22 @@
                             android:layout_weight="1"
                             android:background="#D89A69"
                             android:orientation="horizontal"
-                            android:weightSum="3">
+                            android:weightSum="4">
+
+                            <TextView
+                                android:id="@+id/Preset1WeekScopeTV"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/netmarble_medium"
+                                android:gravity="center"
+                                android:text="30"
+                                android:shadowColor="#000000"
+                                android:shadowDx="2"
+                                android:shadowDy="2"
+                                android:shadowRadius="2"
+                                android:textColor="#FFEB3B"
+                                android:textSize="17sp" />
 
                             <TextView
                                 android:id="@+id/Preset1WeekTempTV"
@@ -218,7 +248,11 @@
                                 android:fontFamily="@font/netmarble_medium"
                                 android:gravity="center"
                                 android:text="30"
-                                android:textColor="#FFFFFF"
+                                android:shadowColor="#000000"
+                                android:shadowDx="2"
+                                android:shadowDy="2"
+                                android:shadowRadius="2"
+                                android:textColor="#ffffff"
                                 android:textSize="17sp" />
 
                             <TextView
@@ -229,7 +263,11 @@
                                 android:fontFamily="@font/netmarble_medium"
                                 android:gravity="center"
                                 android:text="30"
-                                android:textColor="#FFFFFF"
+                                android:shadowColor="#000000"
+                                android:shadowDx="2"
+                                android:shadowDy="2"
+                                android:shadowRadius="2"
+                                android:textColor="#ffffff"
                                 android:textSize="17sp" />
 
                             <TextView
@@ -240,7 +278,11 @@
                                 android:fontFamily="@font/netmarble_medium"
                                 android:gravity="center"
                                 android:text="30"
-                                android:textColor="#FFFFFF"
+                                android:shadowColor="#000000"
+                                android:shadowDx="2"
+                                android:shadowDy="2"
+                                android:shadowRadius="2"
+                                android:textColor="#ffffff"
                                 android:textSize="17sp" />
 
                         </LinearLayout>
@@ -251,7 +293,22 @@
                             android:layout_weight="1"
                             android:background="#D89A69"
                             android:orientation="horizontal"
-                            android:weightSum="3">
+                            android:weightSum="4">
+
+                            <TextView
+                                android:id="@+id/Preset2WeekScopeTV"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/netmarble_medium"
+                                android:gravity="center"
+                                android:text="30"
+                                android:shadowColor="#000000"
+                                android:shadowDx="2"
+                                android:shadowDy="2"
+                                android:shadowRadius="2"
+                                android:textColor="#FFEB3B"
+                                android:textSize="17sp" />
 
                             <TextView
                                 android:id="@+id/Preset2WeekTempTV"
@@ -261,6 +318,10 @@
                                 android:fontFamily="@font/netmarble_medium"
                                 android:gravity="center"
                                 android:text="30"
+                                android:shadowColor="#000000"
+                                android:shadowDx="2"
+                                android:shadowDy="2"
+                                android:shadowRadius="2"
                                 android:textColor="#FFFFFF"
                                 android:textSize="17sp" />
 
@@ -272,6 +333,10 @@
                                 android:fontFamily="@font/netmarble_medium"
                                 android:gravity="center"
                                 android:text="30"
+                                android:shadowColor="#000000"
+                                android:shadowDx="2"
+                                android:shadowDy="2"
+                                android:shadowRadius="2"
                                 android:textColor="#FFFFFF"
                                 android:textSize="17sp" />
 
@@ -283,6 +348,10 @@
                                 android:fontFamily="@font/netmarble_medium"
                                 android:gravity="center"
                                 android:text="30"
+                                android:shadowColor="#000000"
+                                android:shadowDx="2"
+                                android:shadowDy="2"
+                                android:shadowRadius="2"
                                 android:textColor="#FFFFFF"
                                 android:textSize="17sp" />
 
@@ -295,7 +364,22 @@
                             android:layout_weight="1"
                             android:background="#D89A69"
                             android:orientation="horizontal"
-                            android:weightSum="3">
+                            android:weightSum="4">
+
+                            <TextView
+                                android:id="@+id/Preset3WeekScopeTV"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/netmarble_medium"
+                                android:gravity="center"
+                                android:text="30"
+                                android:shadowColor="#000000"
+                                android:shadowDx="2"
+                                android:shadowDy="2"
+                                android:shadowRadius="2"
+                                android:textColor="#FFEB3B"
+                                android:textSize="17sp" />
 
                             <TextView
                                 android:id="@+id/Preset3WeekTempTV"
@@ -305,6 +389,10 @@
                                 android:fontFamily="@font/netmarble_medium"
                                 android:gravity="center"
                                 android:text="30"
+                                android:shadowColor="#000000"
+                                android:shadowDx="2"
+                                android:shadowDy="2"
+                                android:shadowRadius="2"
                                 android:textColor="#FFFFFF"
                                 android:textSize="17sp" />
 
@@ -316,6 +404,10 @@
                                 android:fontFamily="@font/netmarble_medium"
                                 android:gravity="center"
                                 android:text="30"
+                                android:shadowColor="#000000"
+                                android:shadowDx="2"
+                                android:shadowDy="2"
+                                android:shadowRadius="2"
                                 android:textColor="#FFFFFF"
                                 android:textSize="17sp" />
 
@@ -327,6 +419,10 @@
                                 android:fontFamily="@font/netmarble_medium"
                                 android:gravity="center"
                                 android:text="30"
+                                android:shadowColor="#000000"
+                                android:shadowDx="2"
+                                android:shadowDy="2"
+                                android:shadowRadius="2"
                                 android:textColor="#FFFFFF"
                                 android:textSize="17sp" />
 
@@ -338,7 +434,22 @@
                             android:layout_weight="1"
                             android:background="#D89A69"
                             android:orientation="horizontal"
-                            android:weightSum="3">
+                            android:weightSum="4">
+
+                            <TextView
+                                android:id="@+id/Preset4WeekScopeTV"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/netmarble_medium"
+                                android:gravity="center"
+                                android:text="30"
+                                android:shadowColor="#000000"
+                                android:shadowDx="2"
+                                android:shadowDy="2"
+                                android:shadowRadius="2"
+                                android:textColor="#FFEB3B"
+                                android:textSize="17sp" />
 
                             <TextView
                                 android:id="@+id/Preset4WeekTempTV"
@@ -348,6 +459,10 @@
                                 android:fontFamily="@font/netmarble_medium"
                                 android:gravity="center"
                                 android:text="30"
+                                android:shadowColor="#000000"
+                                android:shadowDx="2"
+                                android:shadowDy="2"
+                                android:shadowRadius="2"
                                 android:textColor="#FFFFFF"
                                 android:textSize="17sp" />
 
@@ -359,6 +474,10 @@
                                 android:fontFamily="@font/netmarble_medium"
                                 android:gravity="center"
                                 android:text="30"
+                                android:shadowColor="#000000"
+                                android:shadowDx="2"
+                                android:shadowDy="2"
+                                android:shadowRadius="2"
                                 android:textColor="#FFFFFF"
                                 android:textSize="17sp" />
 
@@ -370,6 +489,10 @@
                                 android:fontFamily="@font/netmarble_medium"
                                 android:gravity="center"
                                 android:text="30"
+                                android:shadowColor="#000000"
+                                android:shadowDx="2"
+                                android:shadowDy="2"
+                                android:shadowRadius="2"
                                 android:textColor="#FFFFFF"
                                 android:textSize="17sp" />
 
@@ -426,7 +549,7 @@
                 android:fontFamily="@font/netmarble_bold"
                 android:gravity="center"
                 android:text="♡"
-                android:textColor="#FB0000"
+                android:textColor="#FF3434"
                 android:textSize="30sp" />
 
 
