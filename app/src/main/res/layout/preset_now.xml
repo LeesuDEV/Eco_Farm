@@ -239,12 +239,12 @@
                                             android:layout_weight="1"
                                             android:fontFamily="@font/netmarble_medium"
                                             android:gravity="center"
-                                            android:text="30"
+                                            android:text="~1주"
                                             android:shadowColor="#000000"
                                             android:shadowDx="2"
                                             android:shadowDy="2"
                                             android:shadowRadius="2"
-                                            android:textColor="#ffffff"
+                                            android:textColor="#FFEB3B"
                                             android:textSize="17sp" />
 
                                         <TextView
@@ -314,7 +314,7 @@
                                             android:shadowDx="2"
                                             android:shadowDy="2"
                                             android:shadowRadius="2"
-                                            android:textColor="#ffffff"
+                                            android:textColor="#FFEB3B"
                                             android:textSize="17sp" />
 
                                         <TextView
@@ -385,7 +385,7 @@
                                             android:shadowDx="2"
                                             android:shadowDy="2"
                                             android:shadowRadius="2"
-                                            android:textColor="#ffffff"
+                                            android:textColor="#FFEB3B"
                                             android:textSize="17sp" />
 
                                         <TextView
@@ -450,12 +450,12 @@
                                             android:layout_weight="1"
                                             android:fontFamily="@font/netmarble_medium"
                                             android:gravity="center"
-                                            android:text="30"
                                             android:shadowColor="#000000"
                                             android:shadowDx="2"
                                             android:shadowDy="2"
                                             android:shadowRadius="2"
-                                            android:textColor="#ffffff"
+                                            android:text="30"
+                                            android:textColor="#FFEB3B"
                                             android:textSize="17sp" />
 
                                         <TextView

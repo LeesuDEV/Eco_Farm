@@ -291,7 +291,7 @@
                                             android:shadowDx="2"
                                             android:shadowDy="2"
                                             android:shadowRadius="2"
-                                            android:textColor="#FFFFFF"
+                                            android:textColor="#FFEB3B"
                                             android:textSize="17sp" />
 
                                         <EditText
@@ -365,7 +365,7 @@
                                             android:shadowDx="2"
                                             android:shadowDy="2"
                                             android:shadowRadius="2"
-                                            android:textColor="#FFFFFF"
+                                            android:textColor="#FFEB3B"
                                             android:textSize="17sp" />
 
                                         <EditText
@@ -440,7 +440,7 @@
                                             android:shadowDx="2"
                                             android:shadowDy="2"
                                             android:shadowRadius="2"
-                                            android:textColor="#FFFFFF"
+                                            android:textColor="#FFEB3B"
                                             android:textSize="17sp" />
 
                                         <EditText
@@ -514,7 +514,7 @@
                                             android:shadowDy="2"
                                             android:shadowRadius="2"
                                             android:text="30"
-                                            android:textColor="#FFFFFF"
+                                            android:textColor="#FFEB3B"
                                             android:textSize="17sp" />
 
                                         <EditText
