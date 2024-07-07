@@ -113,12 +113,12 @@
                             android:layout_weight="8"
                             android:orientation="horizontal"
                             android:padding="5dp"
-                            android:weightSum="8">
+                            android:weightSum="12">
 
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_weight="2"
+                                android:layout_weight="3"
                                 android:fontFamily="@font/netmarble_bold"
                                 android:gravity="center"
                                 android:shadowColor="#000000"
@@ -132,7 +132,7 @@
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_weight="2"
+                                android:layout_weight="3"
                                 android:fontFamily="@font/netmarble_bold"
                                 android:gravity="center"
                                 android:shadowColor="#000000"
@@ -146,7 +146,7 @@
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_weight="2"
+                                android:layout_weight="3"
                                 android:fontFamily="@font/netmarble_bold"
                                 android:gravity="center"
                                 android:shadowColor="#000000"
@@ -160,7 +160,7 @@
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_weight="2"
+                                android:layout_weight="3"
                                 android:fontFamily="@font/netmarble_bold"
                                 android:gravity="center"
                                 android:shadowColor="#000000"
@@ -290,7 +290,7 @@
                                             android:shadowColor="#000000"
                                             android:shadowDx="2"
                                             android:shadowDy="2"
-                                            android:shadowRadius="5"
+                                            android:shadowRadius="2"
                                             android:textColor="#FFFFFF"
                                             android:textSize="17sp" />
 
@@ -303,6 +303,10 @@
                                             android:fontFamily="@font/netmarble_medium"
                                             android:gravity="center"
                                             android:text="30"
+                                            android:shadowColor="#000000"
+                                            android:shadowDx="2"
+                                            android:shadowDy="2"
+                                            android:shadowRadius="2"
                                             android:textColor="#FFFFFF"
                                             android:textSize="17sp" />
 
@@ -315,6 +319,10 @@
                                             android:fontFamily="@font/netmarble_medium"
                                             android:gravity="center"
                                             android:text="30"
+                                            android:shadowColor="#000000"
+                                            android:shadowDx="2"
+                                            android:shadowDy="2"
+                                            android:shadowRadius="2"
                                             android:textColor="#FFFFFF"
                                             android:textSize="17sp" />
 
@@ -327,6 +335,10 @@
                                             android:fontFamily="@font/netmarble_medium"
                                             android:gravity="center"
                                             android:text="30"
+                                            android:shadowColor="#000000"
+                                            android:shadowDx="2"
+                                            android:shadowDy="2"
+                                            android:shadowRadius="2"
                                             android:textColor="#FFFFFF"
                                             android:textSize="17sp" />
 
@@ -352,7 +364,7 @@
                                             android:shadowColor="#000000"
                                             android:shadowDx="2"
                                             android:shadowDy="2"
-                                            android:shadowRadius="5"
+                                            android:shadowRadius="2"
                                             android:textColor="#FFFFFF"
                                             android:textSize="17sp" />
 
@@ -365,6 +377,10 @@
                                             android:fontFamily="@font/netmarble_medium"
                                             android:gravity="center"
                                             android:text="30"
+                                            android:shadowColor="#000000"
+                                            android:shadowDx="2"
+                                            android:shadowDy="2"
+                                            android:shadowRadius="2"
                                             android:textColor="#FFFFFF"
                                             android:textSize="17sp" />
 
@@ -377,6 +393,10 @@
                                             android:fontFamily="@font/netmarble_medium"
                                             android:gravity="center"
                                             android:text="30"
+                                            android:shadowColor="#000000"
+                                            android:shadowDx="2"
+                                            android:shadowDy="2"
+                                            android:shadowRadius="2"
                                             android:textColor="#FFFFFF"
                                             android:textSize="17sp" />
 
@@ -389,6 +409,10 @@
                                             android:fontFamily="@font/netmarble_medium"
                                             android:gravity="center"
                                             android:text="30"
+                                            android:shadowColor="#000000"
+                                            android:shadowDx="2"
+                                            android:shadowDy="2"
+                                            android:shadowRadius="2"
                                             android:textColor="#FFFFFF"
                                             android:textSize="17sp" />
 
@@ -415,7 +439,7 @@
                                             android:shadowColor="#000000"
                                             android:shadowDx="2"
                                             android:shadowDy="2"
-                                            android:shadowRadius="5"
+                                            android:shadowRadius="2"
                                             android:textColor="#FFFFFF"
                                             android:textSize="17sp" />
 
@@ -428,6 +452,10 @@
                                             android:fontFamily="@font/netmarble_medium"
                                             android:gravity="center"
                                             android:text="30"
+                                            android:shadowColor="#000000"
+                                            android:shadowDx="2"
+                                            android:shadowDy="2"
+                                            android:shadowRadius="2"
                                             android:textColor="#FFFFFF"
                                             android:textSize="17sp" />
 
@@ -440,6 +468,10 @@
                                             android:fontFamily="@font/netmarble_medium"
                                             android:gravity="center"
                                             android:text="30"
+                                            android:shadowColor="#000000"
+                                            android:shadowDx="2"
+                                            android:shadowDy="2"
+                                            android:shadowRadius="2"
                                             android:textColor="#FFFFFF"
                                             android:textSize="17sp" />
 
@@ -452,6 +484,10 @@
                                             android:fontFamily="@font/netmarble_medium"
                                             android:gravity="center"
                                             android:text="30"
+                                            android:shadowColor="#000000"
+                                            android:shadowDx="2"
+                                            android:shadowDy="2"
+                                            android:shadowRadius="2"
                                             android:textColor="#FFFFFF"
                                             android:textSize="17sp" />
 
@@ -473,11 +509,11 @@
                                             android:fontFamily="@font/netmarble_medium"
                                             android:gravity="center"
                                             android:inputType="number"
-                                            android:text="30"
                                             android:shadowColor="#000000"
                                             android:shadowDx="2"
                                             android:shadowDy="2"
-                                            android:shadowRadius="5"
+                                            android:shadowRadius="2"
+                                            android:text="30"
                                             android:textColor="#FFFFFF"
                                             android:textSize="17sp" />
 
@@ -490,6 +526,10 @@
                                             android:fontFamily="@font/netmarble_medium"
                                             android:gravity="center"
                                             android:text="30"
+                                            android:shadowColor="#000000"
+                                            android:shadowDx="2"
+                                            android:shadowDy="2"
+                                            android:shadowRadius="2"
                                             android:textColor="#FFFFFF"
                                             android:textSize="17sp" />
 
@@ -502,6 +542,10 @@
                                             android:fontFamily="@font/netmarble_medium"
                                             android:gravity="center"
                                             android:text="30"
+                                            android:shadowColor="#000000"
+                                            android:shadowDx="2"
+                                            android:shadowDy="2"
+                                            android:shadowRadius="2"
                                             android:textColor="#FFFFFF"
                                             android:textSize="17sp" />
 
@@ -514,6 +558,10 @@
                                             android:fontFamily="@font/netmarble_medium"
                                             android:gravity="center"
                                             android:text="30"
+                                            android:shadowColor="#000000"
+                                            android:shadowDx="2"
+                                            android:shadowDy="2"
+                                            android:shadowRadius="2"
                                             android:textColor="#FFFFFF"
                                             android:textSize="17sp" />
 
