@@ -43,7 +43,10 @@ public class PresetRegisterDialog extends Dialog {
                 MainFragment.cropsHub_DB.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        // 글이 없을때
                         if (queryDocumentSnapshots.isEmpty()){
+                            PresetFixDialog.existUID = false;
+                            dismiss();
                             return;
                         }
                         PresetFixDialog.existUID = false ;
@@ -65,7 +68,7 @@ public class PresetRegisterDialog extends Dialog {
         CancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PresetFixDialog.existUID = true;
+                PresetFixDialog.isCancel = true;
                 dismiss();
             }
         });
