@@ -22,6 +22,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="프리셋 수정"
+                android:shadowColor="#000000"
+                android:shadowDx="3"
+                android:shadowDy="3"
+                android:shadowRadius="2"
                 android:textSize="30sp"
                 android:textColor="#ffffff"
                 android:fontFamily="@font/netmarble_bold"
@@ -51,8 +55,8 @@
                     android:fontFamily="@font/netmarble_bold"
                     android:gravity="center"
                     android:shadowColor="#000000"
-                    android:shadowDx="1"
-                    android:shadowDy="1"
+                    android:shadowDx="2"
+                    android:shadowDy="2"
                     android:shadowRadius="1"
                     android:text="상추[Admin]"
                     android:textColor="#FFBF00"
@@ -73,8 +77,8 @@
                     android:fontFamily="@font/netmarble_bold"
                     android:gravity="center"
                     android:shadowColor="#000000"
-                    android:shadowDx="1"
-                    android:shadowDy="1"
+                    android:shadowDx="2"
+                    android:shadowDy="2"
                     android:shadowRadius="1"
                     android:text="습한환경에서 키워주세요"
                     android:textColor="#FFC000"
@@ -124,7 +128,7 @@
                                 android:shadowColor="#000000"
                                 android:shadowDx="2"
                                 android:shadowDy="2"
-                                android:shadowRadius="2"
+                                android:shadowRadius="4"
                                 android:text="~주차"
                                 android:textColor="#B2FFB0"
                                 android:textSize="20sp" />
@@ -200,7 +204,7 @@
                                 android:shadowColor="#000000"
                                 android:shadowDx="2"
                                 android:shadowDy="2"
-                                android:shadowRadius="2"
+                                android:shadowRadius="4"
                                 android:text="발아"
                                 android:textColor="#E6E6E6"
                                 android:textSize="20sp" />
@@ -215,7 +219,7 @@
                                 android:shadowColor="#000000"
                                 android:shadowDx="2"
                                 android:shadowDy="2"
-                                android:shadowRadius="2"
+                                android:shadowRadius="4"
                                 android:text="묘목"
                                 android:textColor="#E6E6E6"
                                 android:textSize="20sp" />
@@ -230,7 +234,7 @@
                                 android:shadowColor="#000000"
                                 android:shadowDx="2"
                                 android:shadowDy="2"
-                                android:shadowRadius="2"
+                                android:shadowRadius="4"
                                 android:text="생장"
                                 android:textColor="#E6E6E6"
                                 android:textSize="20sp" />
@@ -245,7 +249,7 @@
                                 android:shadowColor="#000000"
                                 android:shadowDx="2"
                                 android:shadowDy="2"
-                                android:shadowRadius="2"
+                                android:shadowRadius="4"
                                 android:text="성숙"
                                 android:textColor="#E6E6E6"
                                 android:textSize="20sp" />
@@ -284,13 +288,13 @@
                                             android:layout_width="0dp"
                                             android:layout_height="match_parent"
                                             android:layout_weight="1"
-                                            android:fontFamily="@font/netmarble_medium"
+                                            android:fontFamily="@font/netmarble_bold"
                                             android:gravity="center"
                                             android:text="~1주"
                                             android:shadowColor="#000000"
                                             android:shadowDx="2"
                                             android:shadowDy="2"
-                                            android:shadowRadius="2"
+                                            android:shadowRadius="4"
                                             android:textColor="#FFEB3B"
                                             android:textSize="17sp" />
 
@@ -354,13 +358,13 @@
                                             android:layout_width="0dp"
                                             android:layout_height="match_parent"
                                             android:layout_weight="1"
-                                            android:fontFamily="@font/netmarble_medium"
+                                            android:fontFamily="@font/netmarble_bold"
                                             android:gravity="center"
                                             android:text="30"
                                             android:shadowColor="#000000"
                                             android:shadowDx="2"
                                             android:shadowDy="2"
-                                            android:shadowRadius="2"
+                                            android:shadowRadius="4"
                                             android:textColor="#FFEB3B"
                                             android:textSize="17sp" />
 
@@ -425,13 +429,13 @@
                                             android:layout_width="0dp"
                                             android:layout_height="match_parent"
                                             android:layout_weight="1"
-                                            android:fontFamily="@font/netmarble_medium"
+                                            android:fontFamily="@font/netmarble_bold"
                                             android:gravity="center"
                                             android:text="30"
                                             android:shadowColor="#000000"
                                             android:shadowDx="2"
                                             android:shadowDy="2"
-                                            android:shadowRadius="2"
+                                            android:shadowRadius="4"
                                             android:textColor="#FFEB3B"
                                             android:textSize="17sp" />
 
@@ -495,12 +499,12 @@
                                             android:layout_width="0dp"
                                             android:layout_height="match_parent"
                                             android:layout_weight="1"
-                                            android:fontFamily="@font/netmarble_medium"
+                                            android:fontFamily="@font/netmarble_bold"
                                             android:gravity="center"
                                             android:shadowColor="#000000"
                                             android:shadowDx="2"
                                             android:shadowDy="2"
-                                            android:shadowRadius="2"
+                                            android:shadowRadius="4"
                                             android:text="30"
                                             android:textColor="#FFEB3B"
                                             android:textSize="17sp" />
@@ -582,7 +586,7 @@
                                 android:shadowColor="#000000"
                                 android:shadowDx="2"
                                 android:shadowDy="2"
-                                android:shadowRadius="2"
+                                android:shadowRadius="4"
                                 android:text="재배"
                                 android:textColor="#E6E6E6"
                                 android:textSize="20sp" />
@@ -622,7 +626,7 @@
                                             android:layout_width="0dp"
                                             android:layout_height="match_parent"
                                             android:layout_weight="1"
-                                            android:fontFamily="@font/netmarble_medium"
+                                            android:fontFamily="@font/netmarble_bold"
                                             android:gravity="center"
                                             android:text="성숙기 이후"
                                             android:shadowColor="#000000"
@@ -699,7 +703,8 @@
                     android:layout_height="match_parent"
                     app:cardCornerRadius="15dp"
                     android:layout_weight="1"
-                    android:layout_marginRight="20dp">
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="2dp">
 
                     <TextView
                         android:id="@+id/PresetFixSubmitBtn"
@@ -721,7 +726,9 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     app:cardCornerRadius="15dp"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginRight="2dp">
 
                     <TextView
                         android:id="@+id/PresetHubRegisterBtn"
