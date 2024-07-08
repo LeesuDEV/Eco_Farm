@@ -146,8 +146,7 @@ public class PresetFragment extends Fragment {
                     return;
                 }
 
-                week = value.get("WEEK").toString();
-                currentWeekTV.setText(week + "주차");
+                currentWeekTV.setText(MainFragment.week + "주차");
             }
         });
 

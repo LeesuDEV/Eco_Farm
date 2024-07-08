@@ -23,6 +23,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -83,16 +85,9 @@ public class HomeFragment extends Fragment {
         nowBrightnessTV = view.findViewById(R.id.nowBrightnessTV);
         nowWaterLevelTV = view.findViewById(R.id.nowWaterLevelTV);
 
-        runDBProcess();
+        showMyfarmStatus();
 
-        //팜 활성화에 따라 레이아웃 업데이트
-        if (MainFragment.status) {
-            newFarm.setVisibility(View.GONE);
-            farmStatus.setVisibility(View.VISIBLE);
-        } else {
-            newFarm.setVisibility(View.VISIBLE);
-            farmStatus.setVisibility(View.GONE);
-        }
+        changeDataListener(); // 텍스트뷰에 Realtime DB 데이터 업데이트 하는 메소드
 
         selectFarmTV.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,7 +116,7 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onSuccess(Void unused) {
                         Toast.makeText(getContext(), "등록 성공!", Toast.LENGTH_SHORT).show();
-                        MainFragment.status = true;
+                        MainFragment.farmStatus = true;
                         newFarm.setVisibility(View.GONE);
                         farmStatus.setVisibility(View.VISIBLE);
 
@@ -132,6 +127,7 @@ public class HomeFragment extends Fragment {
         });
     }
 
+    //농작물 선택 다이어로그
     public void chooseDialog() {
         final String[] words = new String[]{"상추"};
 
@@ -143,16 +139,18 @@ public class HomeFragment extends Fragment {
 
                 switch (words[which]) {
                     case "상추":
-                        carefulTV.setText("평균소요일 : 21일\n\n벌레꼬임 : 적음\n\n방식 : 에어로팜\n\n난이도 : 쉬움");
-                        expireDate = 21;
+                        carefulTV.setText("평균소요일 : 42일\n\n벌레꼬임 : 적음\n\n방식 : 에어로팜\n\n난이도 : 쉬움");
+                        expireDate = 42;
                         break;
                     default:
                         break;
                 }
             }
         }).setNeutralButton("closed", null).setPositiveButton("OK", null).setNegativeButton("cancel", null).show();
-    } //농작물 선택 다이어로그
+    }
 
+
+    // 텍스트뷰에 Realtime DB 데이터 업데이트 하는 메소드
     public void changeDataListener() {
         displayThread(MainFragment.now_temp, HomeFragment.nowTempTV, "˚");
         displayThread(MainFragment.now_hum, HomeFragment.nowHumTV, "%");
@@ -160,7 +158,7 @@ public class HomeFragment extends Fragment {
         displayThread(MainFragment.now_waterLevel, HomeFragment.nowWaterLevelTV, "%");
     }
 
-    /*------------------값 표출부분 ------------------------------------------*/
+    // realtimeDB 이벤트리스너를 달아주는 메소드 - changeDataListener랑 연계
     public void displayThread(DatabaseReference def, TextView textView, String s) {
         def.addValueEventListener(new ValueEventListener() {
             @Override
@@ -180,29 +178,14 @@ public class HomeFragment extends Fragment {
             }
         });
     }
-    /*--------------------------값 표출부분 끝 -----------------------------*/
-
-    public void runDBProcess(){
-        Handler handler = new Handler();
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                showMyfarmStatus();
-            }
-        };
-
-        long delay = 2000;
-
-        handler.postDelayed(runnable,delay);
-    }
 
     public void showMyfarmStatus() {
-        MainFragment.fireStore_MyDB.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+        MainFragment.fireStore_MyDB.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                Map<String, Object> data = documentSnapshot.getData();
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                Map<String, Object> data = value.getData();
 
-                changeDataListener(); // 텍스트뷰에 데이터 업데이트 하는 메소드
+                updateFarmLayout(data); // 농작물 유무에 따라 레이아웃 업데이트 해주는 메소드
 
                 String crops = (String) data.get("CROPS");
                 String date = (String) data.get("DATE");
@@ -219,22 +202,10 @@ public class HomeFragment extends Fragment {
                     default:
                         break;
                 }
+
                 HomeFragment.startDateTV.setText(date);
                 HomeFragment.expireDateTV.setText(expireDate);
-
-                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                try {
-                    // 몇일차이인지 계산
-                    Date mDate = dateFormat.parse(date);
-                    Date mTodayDate = dateFormat.parse(new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date())); //오늘날짜
-
-                    long growthMillis = mTodayDate.getTime() - mDate.getTime();
-                    HomeFragment.growthDate = TimeUnit.DAYS.convert(growthMillis, TimeUnit.MILLISECONDS);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-
-                HomeFragment.growthDateTV.setText("" + HomeFragment.growthDate + "일");
+                HomeFragment.growthDateTV.setText(MainFragment.daysBetween + "일");
             }
         });
     }
@@ -259,6 +230,20 @@ public class HomeFragment extends Fragment {
         if (HomeFragment.growthDate < 7) {
             //발아
             HomeFragment.growthStateTV.setText("발아");
+        }
+    }
+
+    // 농작물 유무에 따라 레이아웃 업데이트 해주는 메소드
+    private void updateFarmLayout(Map<String,Object> data) {
+        MainFragment.farmStatus = Boolean.parseBoolean(data.get("farmStatus").toString());
+
+        //팜 활성화에 따라 레이아웃 업데이트
+        if (MainFragment.farmStatus) {
+            newFarm.setVisibility(View.GONE);
+            farmStatus.setVisibility(View.VISIBLE);
+        } else {
+            newFarm.setVisibility(View.VISIBLE);
+            farmStatus.setVisibility(View.GONE);
         }
     }
 

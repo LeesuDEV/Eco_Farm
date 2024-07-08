@@ -25,8 +25,13 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import org.checkerframework.checker.units.qual.C;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Map;
@@ -50,9 +55,10 @@ public class MainFragment extends AppCompatActivity {
 
     static String uid, userName;
 
-    static boolean status = false; // 작물 키우고있나? 아닌가? 상태
+    static boolean farmStatus = false; // 작물 키우고있나? 아닌가? 상태
     static String startDate; // 식물 성장 시작일
     static int week; // 식물 성장 주
+    static int daysBetween; //몇일차
 
     static DatabaseReference now_temp;
     static DatabaseReference now_hum;
@@ -73,16 +79,18 @@ public class MainFragment extends AppCompatActivity {
 
         uid = getIntent().getStringExtra("uid"); //UID정보 호출
 
-        dbThread();
+        loadDB();
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();                            //액션바 숨기기
 
-        /*--------------------------BottomNavigationBar을 통한 플래그먼트 이동부분(메소드는 밑에있음)------------*/
+        // BottomNavigationBar을 통한 플래그먼트 이동부분(메소드는 밑에있음)
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                Log.d("item?",String.valueOf(item));
 
                 switch (item.getItemId()) {
                     case (R.id.mainmenu):
@@ -101,19 +109,10 @@ public class MainFragment extends AppCompatActivity {
                 return loadFragmeent(fragment);
             }
         });
-        /*--------------------------BottomNavigationBar을 통한 플래그먼트 이동부분(메소드는 밑에있음)------------*/
-    }
 
-    public void getRealtimeDB() {
-        now_temp = realtimeDB_Now.child("temp");
-        now_hum = realtimeDB_Now.child("hum");
-        now_birghtness = realtimeDB_Now.child("brightness");
-        now_waterLevel = realtimeDB_Now.child("water_level");
-
-        hope_temp = realtimeDB_Hope.child("temp");
-        hope_hum = realtimeDB_Hope.child("hum");
-        hope_brightness = realtimeDB_Hope.child("brightness");
-        hope_water_level = realtimeDB_Hope.child("water_level");
+        //기본 프래그먼트를 StartFragment로 설정
+        fragment = new StartFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_main, fragment).commit();
     }
 
     /*-------------플래그먼트 로드 메소드------------*/
@@ -127,62 +126,62 @@ public class MainFragment extends AppCompatActivity {
     /*-------------플래그먼트 로드 메소드------------*/
 
     /*------------------------데이터베이스 쓰레드 ----------------------*/
-    public void dbThread() {
-        Executor executor = Executors.newSingleThreadExecutor(); // 싱글쓰레드익스큐터로 DB작업 백그라운드 처리.
+    public void loadDB() {
+        realtimeDB_Hope = fireRealtimeDB.getReference("USER/" + uid + "/hope"); // Firebase Realtime Database 인스턴스의 참조를 생성
+        realtimeDB_Now = fireRealtimeDB.getReference("USER/" + uid + "/now");
 
-        executor.execute(new Runnable() {
+        cropsHub_DB = FirebaseFirestore.getInstance().collection("crops");
+
+        fireStore_MyDB = FirebaseFirestore.getInstance().collection("users").document(uid); // FireStore값 참조
+
+        now_temp = realtimeDB_Now.child("temp");
+        now_hum = realtimeDB_Now.child("hum");
+        now_birghtness = realtimeDB_Now.child("brightness");
+        now_waterLevel = realtimeDB_Now.child("water_level");
+
+        hope_temp = realtimeDB_Hope.child("temp");
+        hope_hum = realtimeDB_Hope.child("hum");
+        hope_brightness = realtimeDB_Hope.child("brightness");
+        hope_water_level = realtimeDB_Hope.child("water_level");
+
+        // 유저의 FireStore 데이터 갖고오기.
+        fireStore_MyDB.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
-            public void run() {
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Map<String, Object> data = documentSnapshot.getData();
 
-                realtimeDB_Hope = fireRealtimeDB.getReference("USER/" + uid + "/hope"); // Firebase Realtime Database 인스턴스의 참조를 생성
-                realtimeDB_Now = fireRealtimeDB.getReference("USER/" + uid + "/now");
+                if (data.containsKey("USER_NAME")) {
+                    userName = (String) data.get("USER_NAME");
+                    userName_TextView.setText(userName + "님");
+                }
+                if (data.containsKey("DATE")) {
+                    startDate = (String) data.get("DATE");
+                }
 
-                cropsHub_DB = FirebaseFirestore.getInstance().collection("crops");
+                if (!startDate.isEmpty()) {
+                    int year, month, day;
 
-                fireStore_MyDB = FirebaseFirestore.getInstance().collection("users").document(uid); // FireStore값 참조
+                    Calendar calendar = Calendar.getInstance(); //오늘날짜 받아오기
+                    year = calendar.get(Calendar.YEAR);
+                    month = calendar.get(Calendar.MONTH) + 1;
+                    day = calendar.get(Calendar.DAY_OF_MONTH);
+                    LocalDate localDate = LocalDate.of(year, month, day);
 
-                getRealtimeDB(); //리얼타임 DB 참조
+                    String[] splitStartDate = startDate.split("-"); //시작날짜 받아오기
+                    year = Integer.parseInt(splitStartDate[0]);
+                    month = Integer.parseInt(splitStartDate[1]);
+                    day = Integer.parseInt(splitStartDate[2]);
+                    LocalDate startLocalDate = LocalDate.of(year, month, day);
 
-                // 유저의 FireStore 데이터 갖고오기.
-                fireStore_MyDB.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                    @Override
-                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        Map<String, Object> data = documentSnapshot.getData();
+                    // 시작날짜 - 오늘날짜 차이 계산
+                    daysBetween = (int) ChronoUnit.DAYS.between(startLocalDate, localDate);
+                    Log.d("daysBetween", String.valueOf(daysBetween));
 
-                        if (data.containsKey("USER_NAME")) {
-                            userName = (String) data.get("USER_NAME");
-                        }
-                        if (data.containsKey("STATUS")) {
-                            status = (boolean) data.get("STATUS");
-                        }
-                        if (data.containsKey("DATE")) {
-                            startDate = (String) data.get("DATE");
-                        }
-
-                        if (data.containsKey("WEEK")) {
-                            week = Integer.parseInt(data.get("WEEK").toString());
-                        }
-
-                        //작업후 기본 프래그먼트를 HomeFragment로 설정
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                fragment = new HomeFragment();
-                                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_main, fragment).commit();
-
-                                userName_TextView.setText(userName + "님");
-                                //showMyfarmStatus(); // 내 농작물 현황을 업데이트하는 메소드
-                            }
-                        });
-                    }
-                });
+                    week = daysBetween / 7;
+                    Log.d("week", String.valueOf(week));
+                }
             }
         });
     }
-    /*------------------------데이터베이스 쓰레드 ----------------------*/
-
-
-
-
 }
 
