@@ -132,7 +132,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_weight="8"
+                        android:layout_weight="6.5"
                         android:orientation="horizontal"
                         android:weightSum="10">
 
@@ -501,6 +501,133 @@
                                             android:shadowDy="2"
                                             android:shadowRadius="2"
                                             android:textColor="#FFFFFF"
+                                            android:textSize="17sp" />
+
+                                    </LinearLayout>
+                                </LinearLayout>
+                            </androidx.cardview.widget.CardView>
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_marginTop="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1.7"
+                        android:orientation="horizontal"
+                        android:weightSum="10">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:orientation="vertical"
+                            android:weightSum="1">
+
+                            <TextView
+                                android:id="@+id/term5TV"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/netmarble_bold"
+                                android:gravity="center"
+                                android:shadowColor="#000000"
+                                android:shadowDx="2"
+                                android:shadowDy="2"
+                                android:shadowRadius="2"
+                                android:text="재배"
+                                android:textColor="#E6E6E6"
+                                android:textSize="20sp" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="8"
+                            android:orientation="vertical">
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginRight="10dp"
+                                app:cardCornerRadius="10dp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="#D89A69"
+                                    android:orientation="vertical"
+                                    android:weightSum="1">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="1"
+                                        android:background="#D89A69"
+                                        android:orientation="horizontal"
+                                        android:weightSum="4">
+
+                                        <TextView
+                                            android:id="@+id/Preset5TermScopeTV"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:fontFamily="@font/netmarble_medium"
+                                            android:gravity="center"
+                                            android:text="성숙기 이후"
+                                            android:shadowColor="#000000"
+                                            android:shadowDx="2"
+                                            android:shadowDy="2"
+                                            android:shadowRadius="2"
+                                            android:textColor="#FFEB3B"
+                                            android:textSize="12sp" />
+
+                                        <TextView
+                                            android:id="@+id/Preset5TermTempTV"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:fontFamily="@font/netmarble_medium"
+                                            android:gravity="center"
+                                            android:text="30"
+                                            android:shadowColor="#000000"
+                                            android:shadowDx="2"
+                                            android:shadowDy="2"
+                                            android:shadowRadius="2"
+                                            android:textColor="#ffffff"
+                                            android:textSize="17sp" />
+
+                                        <TextView
+                                            android:id="@+id/Preset5TermHumTV"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:fontFamily="@font/netmarble_medium"
+                                            android:gravity="center"
+                                            android:text="30"
+                                            android:shadowColor="#000000"
+                                            android:shadowDx="2"
+                                            android:shadowDy="2"
+                                            android:shadowRadius="2"
+                                            android:textColor="#ffffff"
+                                            android:textSize="17sp" />
+
+                                        <TextView
+                                            android:id="@+id/Preset5TermBrightnessTV"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:fontFamily="@font/netmarble_medium"
+                                            android:gravity="center"
+                                            android:text="30"
+                                            android:shadowColor="#000000"
+                                            android:shadowDx="2"
+                                            android:shadowDy="2"
+                                            android:shadowRadius="2"
+                                            android:textColor="#ffffff"
                                             android:textSize="17sp" />
 
                                     </LinearLayout>

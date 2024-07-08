@@ -28,12 +28,13 @@ public class PresetFixDialog extends Dialog {
     TextView PresetNameTV, PresetCommentTV;
 
     EditText Preset1TermScopeTV, Preset2TermScopeTV, Preset3TermScopeTV, Preset4TermScopeTV;
-
+    TextView Preset5TermScopeTV;
     EditText Preset1TermTempTV, Preset1TermHumTV, Preset1TermBrightnessTV;
     EditText Preset2TermTempTV, Preset2TermHumTV, Preset2TermBrightnessTV;
     EditText Preset3TermTempTV, Preset3TermHumTV, Preset3TermBrightnessTV;
     EditText Preset4TermTempTV, Preset4TermHumTV, Preset4TermBrightnessTV;
-    TextView term1TV, term2TV, term3TV, term4TV;
+    EditText Preset5TermTempTV, Preset5TermHumTV, Preset5TermBrightnessTV;
+    TextView term1TV, term2TV, term3TV, term4TV, term5TV;
     TextView PresetFixSubmitBtn, PresetHubRegisterBtn;
 
     static String registerItem;
@@ -58,6 +59,7 @@ public class PresetFixDialog extends Dialog {
         Preset2TermScopeTV = findViewById(R.id.Preset2TermScopeTV);
         Preset3TermScopeTV = findViewById(R.id.Preset3TermScopeTV);
         Preset4TermScopeTV = findViewById(R.id.Preset4TermScopeTV);
+        Preset5TermScopeTV = findViewById(R.id.Preset5TermScopeTV);
 
         Preset1TermTempTV = findViewById(R.id.Preset1TermTempTV);
         Preset1TermHumTV = findViewById(R.id.Preset1TermHumTV);
@@ -71,11 +73,15 @@ public class PresetFixDialog extends Dialog {
         Preset4TermTempTV = findViewById(R.id.Preset4TermTempTV);
         Preset4TermHumTV = findViewById(R.id.Preset4TermHumTV);
         Preset4TermBrightnessTV = findViewById(R.id.Preset4TermBrightnessTV);
+        Preset5TermTempTV = findViewById(R.id.Preset5TermTempTV);
+        Preset5TermHumTV = findViewById(R.id.Preset5TermHumTV);
+        Preset5TermBrightnessTV = findViewById(R.id.Preset5TermBrightnessTV);
 
         term1TV = findViewById(R.id.term1TV);
         term2TV = findViewById(R.id.term2TV);
         term3TV = findViewById(R.id.term3TV);
         term4TV = findViewById(R.id.term4TV);
+        term5TV = findViewById(R.id.term5TV);
 
         PresetFixSubmitBtn = findViewById(R.id.PresetFixSubmitBtn);
         PresetHubRegisterBtn = findViewById(R.id.PresetHubRegisterBtn);
@@ -133,27 +139,32 @@ public class PresetFixDialog extends Dialog {
                 String[] term2 = value.get("term2").toString().split(";");
                 String[] term3 = value.get("term3").toString().split(";");
                 String[] term4 = value.get("term4").toString().split(";");
+                String[] term5 = value.get("term5").toString().split(";");
 
                 // 모든 주 프리셋 불러옴
                 Preset1TermScopeTV.setText(term1[0]);
                 Preset1TermTempTV.setText(term1[1]);
                 Preset1TermHumTV.setText(term1[2]);
-                Preset1TermBrightnessTV.setText(term1[3]);
+                Preset1TermBrightnessTV.setText(BrightnessConverter.brightnessConvert(term1[3]));
 
                 Preset2TermScopeTV.setText(term2[0]);
                 Preset2TermTempTV.setText(term2[1]);
                 Preset2TermHumTV.setText(term2[2]);
-                Preset2TermBrightnessTV.setText(term2[3]);
+                Preset2TermBrightnessTV.setText(BrightnessConverter.brightnessConvert(term2[3]));
 
                 Preset3TermScopeTV.setText(term3[0]);
                 Preset3TermTempTV.setText(term3[1]);
                 Preset3TermHumTV.setText(term3[2]);
-                Preset3TermBrightnessTV.setText(term3[3]);
+                Preset3TermBrightnessTV.setText(BrightnessConverter.brightnessConvert(term3[3]));
 
                 Preset4TermScopeTV.setText(term4[0]);
                 Preset4TermTempTV.setText(term4[1]);
                 Preset4TermHumTV.setText(term4[2]);
-                Preset4TermBrightnessTV.setText(term4[3]);
+                Preset4TermBrightnessTV.setText(BrightnessConverter.brightnessConvert(term4[3]));
+
+                Preset5TermTempTV.setText(term5[0]);
+                Preset5TermHumTV.setText(term5[1]);
+                Preset5TermBrightnessTV.setText(BrightnessConverter.brightnessConvert(term5[2]));
 
                 //해당 주 초록색강조함
                 switch (MainFragment.term) {
@@ -185,6 +196,13 @@ public class PresetFixDialog extends Dialog {
                         Preset4TermHumTV.setTextColor(Color.parseColor("#78FF6E"));
                         Preset4TermBrightnessTV.setTextColor(Color.parseColor("#78FF6E"));
                         break;
+                    case "term5":
+                        term5TV.setTextColor(Color.parseColor("#78FF6E"));
+                        Preset5TermScopeTV.setTextColor(Color.parseColor("#78FF6E"));
+                        Preset5TermTempTV.setTextColor(Color.parseColor("#78FF6E"));
+                        Preset5TermHumTV.setTextColor(Color.parseColor("#78FF6E"));
+                        Preset5TermBrightnessTV.setTextColor(Color.parseColor("#78FF6E"));
+                        break;
                 }
             }
         });
@@ -197,30 +215,35 @@ public class PresetFixDialog extends Dialog {
         String term1_scope = Preset1TermScopeTV.getText().toString();
         String term1_temp = Preset1TermTempTV.getText().toString();
         String term1_hum = Preset1TermHumTV.getText().toString();
-        String term1_brightness = Preset1TermBrightnessTV.getText().toString();
+        String term1_brightness = BrightnessConverter.brightnessDeConvert(Preset1TermBrightnessTV.getText().toString());
 
         String term2_scope = Preset2TermScopeTV.getText().toString();
         String term2_temp = Preset2TermTempTV.getText().toString();
         String term2_hum = Preset2TermHumTV.getText().toString();
-        String term2_brightness = Preset2TermBrightnessTV.getText().toString();
+        String term2_brightness = BrightnessConverter.brightnessDeConvert(Preset2TermBrightnessTV.getText().toString());
 
         String term3_scope = Preset3TermScopeTV.getText().toString();
         String term3_temp = Preset3TermTempTV.getText().toString();
         String term3_hum = Preset3TermHumTV.getText().toString();
-        String term3_brightness = Preset3TermBrightnessTV.getText().toString();
+        String term3_brightness = BrightnessConverter.brightnessDeConvert(Preset3TermBrightnessTV.getText().toString());
 
         String term4_scope = Preset4TermScopeTV.getText().toString();
         String term4_temp = Preset4TermTempTV.getText().toString();
         String term4_hum = Preset4TermHumTV.getText().toString();
-        String term4_brightness = Preset4TermBrightnessTV.getText().toString();
+        String term4_brightness = BrightnessConverter.brightnessDeConvert(Preset4TermBrightnessTV.getText().toString());
+
+        String term5_temp = Preset5TermTempTV.getText().toString();
+        String term5_hum = Preset5TermHumTV.getText().toString();
+        String term5_brightness = BrightnessConverter.brightnessDeConvert(Preset5TermBrightnessTV.getText().toString());
 
         String term1 = term1_scope + ";" + term1_temp + ";" + term1_hum + ";" + term1_brightness;
         String term2 = term2_scope + ";" + term2_temp + ";" + term2_hum + ";" + term2_brightness;
         String term3 = term3_scope + ";" + term3_temp + ";" + term3_hum + ";" + term3_brightness;
         String term4 = term4_scope + ";" + term4_temp + ";" + term4_hum + ";" + term4_brightness;
+        String term5 = term5_temp + ";" + term5_hum + ";" + term5_brightness;
 
         //텍스트 중 하나라도 비어있다면.
-        if (name.isEmpty() || comment.isEmpty() || term1_hum.isEmpty() || term1_brightness.isEmpty() || term1_temp.isEmpty() || term2_brightness.isEmpty() || term2_hum.isEmpty() || term2_temp.isEmpty() || term3_temp.isEmpty() || term3_hum.isEmpty() || term3_brightness.isEmpty() || term4_brightness.isEmpty() || term4_hum.isEmpty() || term4_temp.isEmpty()) {
+        if (name.isEmpty() || comment.isEmpty() || term1_hum.isEmpty() || term1_brightness.isEmpty() || term1_temp.isEmpty() || term2_brightness.isEmpty() || term2_hum.isEmpty() || term2_temp.isEmpty() || term3_temp.isEmpty() || term3_hum.isEmpty() || term3_brightness.isEmpty() || term4_brightness.isEmpty() || term4_hum.isEmpty() || term4_temp.isEmpty() || term5_temp.isEmpty() || term5_hum.isEmpty() || term5_brightness.isEmpty()) {
             Toast.makeText(context, "빈칸이 존재해요!", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -233,6 +256,7 @@ public class PresetFixDialog extends Dialog {
         obj.put("term2", term2);
         obj.put("term3", term3);
         obj.put("term4", term4);
+        obj.put("term5", term5);
 
         MainFragment.fireStore_MyDB.collection("preset").document("preset").update(obj).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
@@ -250,30 +274,35 @@ public class PresetFixDialog extends Dialog {
         String term1_scope = Preset1TermScopeTV.getText().toString();
         String term1_temp = Preset1TermTempTV.getText().toString();
         String term1_hum = Preset1TermHumTV.getText().toString();
-        String term1_brightness = Preset1TermBrightnessTV.getText().toString();
+        String term1_brightness = BrightnessConverter.brightnessDeConvert(Preset1TermBrightnessTV.getText().toString());
 
         String term2_scope = Preset2TermScopeTV.getText().toString();
         String term2_temp = Preset2TermTempTV.getText().toString();
         String term2_hum = Preset2TermHumTV.getText().toString();
-        String term2_brightness = Preset2TermBrightnessTV.getText().toString();
+        String term2_brightness = BrightnessConverter.brightnessDeConvert(Preset2TermBrightnessTV.getText().toString());
 
         String term3_scope = Preset3TermScopeTV.getText().toString();
         String term3_temp = Preset3TermTempTV.getText().toString();
         String term3_hum = Preset3TermHumTV.getText().toString();
-        String term3_brightness = Preset3TermBrightnessTV.getText().toString();
+        String term3_brightness = BrightnessConverter.brightnessDeConvert(Preset3TermBrightnessTV.getText().toString());
 
         String term4_scope = Preset4TermScopeTV.getText().toString();
         String term4_temp = Preset4TermTempTV.getText().toString();
         String term4_hum = Preset4TermHumTV.getText().toString();
-        String term4_brightness = Preset4TermBrightnessTV.getText().toString();
+        String term4_brightness = BrightnessConverter.brightnessDeConvert(Preset4TermBrightnessTV.getText().toString());
+
+        String term5_temp = Preset5TermTempTV.getText().toString();
+        String term5_hum = Preset5TermHumTV.getText().toString();
+        String term5_brightness = BrightnessConverter.brightnessDeConvert(Preset5TermBrightnessTV.getText().toString());
 
         String term1 = term1_scope + ";" + term1_temp + ";" + term1_hum + ";" + term1_brightness;
         String term2 = term2_scope + ";" + term2_temp + ";" + term2_hum + ";" + term2_brightness;
         String term3 = term3_scope + ";" + term3_temp + ";" + term3_hum + ";" + term3_brightness;
         String term4 = term4_scope + ";" + term4_temp + ";" + term4_hum + ";" + term4_brightness;
+        String term5 = term5_temp + ";" + term5_hum + ";" + term5_brightness;
 
         //텍스트 중 하나라도 비어있다면.
-        if (name.isEmpty() || comment.isEmpty() || term1_hum.isEmpty() || term1_brightness.isEmpty() || term1_temp.isEmpty() || term2_brightness.isEmpty() || term2_hum.isEmpty() || term2_temp.isEmpty() || term3_temp.isEmpty() || term3_hum.isEmpty() || term3_brightness.isEmpty() || term4_brightness.isEmpty() || term4_hum.isEmpty() || term4_temp.isEmpty()) {
+        if (name.isEmpty() || comment.isEmpty() || term1_hum.isEmpty() || term1_brightness.isEmpty() || term1_temp.isEmpty() || term2_brightness.isEmpty() || term2_hum.isEmpty() || term2_temp.isEmpty() || term3_temp.isEmpty() || term3_hum.isEmpty() || term3_brightness.isEmpty() || term4_brightness.isEmpty() || term4_hum.isEmpty() || term4_temp.isEmpty() || term5_temp.isEmpty() || term5_hum.isEmpty() || term5_brightness.isEmpty()) {
             Toast.makeText(context, "빈칸이 존재해요!", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -292,6 +321,7 @@ public class PresetFixDialog extends Dialog {
                 obj.put("term2", term2);
                 obj.put("term3", term3);
                 obj.put("term4", term4);
+                obj.put("term5", term5);
                 obj.put("hit", 0);
                 obj.put("number", num);
 

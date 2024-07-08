@@ -49,7 +49,7 @@ public class PresetSubmitDialog extends Dialog {
         });
     }
 
-    String term1,term2,term3,term4;
+    String term1,term2,term3,term4,term5;
     String comment;
     String name;
 
@@ -62,6 +62,7 @@ public class PresetSubmitDialog extends Dialog {
                 term2 = documentSnapshot.get("term2").toString();
                 term3 = documentSnapshot.get("term3").toString();
                 term4 = documentSnapshot.get("term4").toString();
+                term5 = documentSnapshot.get("term5").toString();
 
                 comment = documentSnapshot.get("comment").toString();
                 name = documentSnapshot.getId();
@@ -71,6 +72,7 @@ public class PresetSubmitDialog extends Dialog {
                 obj.put("term2",term2);
                 obj.put("term3",term3);
                 obj.put("term4",term4);
+                obj.put("term5",term5);
                 obj.put("comment",comment);
                 obj.put("name",name);
 

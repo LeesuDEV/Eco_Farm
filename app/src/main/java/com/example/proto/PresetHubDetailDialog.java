@@ -32,11 +32,12 @@ public class PresetHubDetailDialog extends Dialog {
     Context context;
     TextView PresetNameTV, PresetCommentTV;
 
-    TextView Preset1TermScopeTV, Preset2TermScopeTV, Preset3TermScopeTV,Preset4TermScopeTV;
+    TextView Preset1TermScopeTV, Preset2TermScopeTV, Preset3TermScopeTV, Preset4TermScopeTV, Preset5TermScopeTV;
     TextView Preset1TermTempTV, Preset1TermHumTV, Preset1TermBrightnessTV;
     TextView Preset2TermTempTV, Preset2TermHumTV, Preset2TermBrightnessTV;
     TextView Preset3TermTempTV, Preset3TermHumTV, Preset3TermBrightnessTV;
     TextView Preset4TermTempTV, Preset4TermHumTV, Preset4TermBrightnessTV;
+    TextView Preset5TermTempTV, Preset5TermHumTV, Preset5TermBrightnessTV;
     TextView PresetHitTV;
     TextView PresetSubmitBtn;
     TextView hitTV;
@@ -61,6 +62,7 @@ public class PresetHubDetailDialog extends Dialog {
         Preset2TermScopeTV = findViewById(R.id.Preset2TermScopeTV);
         Preset3TermScopeTV = findViewById(R.id.Preset3TermScopeTV);
         Preset4TermScopeTV = findViewById(R.id.Preset4TermScopeTV);
+        Preset5TermScopeTV = findViewById(R.id.Preset5TermScopeTV);
 
         Preset1TermTempTV = findViewById(R.id.Preset1TermTempTV);
         Preset1TermHumTV = findViewById(R.id.Preset1TermHumTV);
@@ -74,7 +76,9 @@ public class PresetHubDetailDialog extends Dialog {
         Preset4TermTempTV = findViewById(R.id.Preset4TermTempTV);
         Preset4TermHumTV = findViewById(R.id.Preset4TermHumTV);
         Preset4TermBrightnessTV = findViewById(R.id.Preset4TermBrightnessTV);
-
+        Preset5TermTempTV = findViewById(R.id.Preset5TermTempTV);
+        Preset5TermHumTV = findViewById(R.id.Preset5TermHumTV);
+        Preset5TermBrightnessTV = findViewById(R.id.Preset5TermBrightnessTV);
         PresetHitTV = findViewById(R.id.PresetHitTV);
         PresetSubmitBtn = findViewById(R.id.PresetSubmitBtn);
 
@@ -167,26 +171,31 @@ public class PresetHubDetailDialog extends Dialog {
                 String[] term2 = value.get("term2").toString().split(";");
                 String[] term3 = value.get("term3").toString().split(";");
                 String[] term4 = value.get("term4").toString().split(";");
+                String[] term5 = value.get("term5").toString().split(";");
 
                 Preset1TermScopeTV.setText("~"+term1[0]+"주");
                 Preset1TermTempTV.setText(term1[1]+"˚C");
                 Preset1TermHumTV.setText(term1[2]+"%");
-                Preset1TermBrightnessTV.setText(term1[3]+"%");
+                Preset1TermBrightnessTV.setText(BrightnessConverter.brightnessConvert(term1[3])+"%");
 
                 Preset2TermScopeTV.setText("~"+term2[0]+"주");
                 Preset2TermTempTV.setText(term2[1]+"˚C");
                 Preset2TermHumTV.setText(term2[2]+"%");
-                Preset2TermBrightnessTV.setText(term2[3]+"%");
+                Preset2TermBrightnessTV.setText(BrightnessConverter.brightnessConvert(term2[3])+"%");
 
                 Preset3TermScopeTV.setText("~"+term3[0]+"주");
                 Preset3TermTempTV.setText(term3[1]+"˚C");
                 Preset3TermHumTV.setText(term3[2]+"%");
-                Preset3TermBrightnessTV.setText(term3[3]+"%");
+                Preset3TermBrightnessTV.setText(BrightnessConverter.brightnessConvert(term3[3])+"%");
 
                 Preset4TermScopeTV.setText("~"+term4[0]+"주");
                 Preset4TermTempTV.setText(term4[1]+"˚C");
                 Preset4TermHumTV.setText(term4[2]+"%");
-                Preset4TermBrightnessTV.setText(term4[3]+"%");
+                Preset4TermBrightnessTV.setText(BrightnessConverter.brightnessConvert(term4[3])+"%");
+
+                Preset5TermTempTV.setText(term5[0] + "˚C");
+                Preset5TermHumTV.setText(term5[1] + "%");
+                Preset5TermBrightnessTV.setText(BrightnessConverter.brightnessConvert(term5[2]) + "%");
 
                 PresetHitTV.setText("" + value.get("hit").toString());
 

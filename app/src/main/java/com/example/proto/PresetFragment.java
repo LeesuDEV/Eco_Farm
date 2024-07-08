@@ -117,7 +117,7 @@ public class PresetFragment extends Fragment {
                 String[] tmp_ls;
                 //텍스트뷰에 현재주차 프리셋 온습도 업데이트
                 tmp_ls = value.getString(MainFragment.term).split(";");
-                currentValueTV.setText("온도 : " + tmp_ls[1] + "˚습도 : " + tmp_ls[2] + "%  조도 : " + tmp_ls[3] + "%");
+                currentValueTV.setText("온도 : " + tmp_ls[1] + "˚습도 : " + tmp_ls[2] + "%  조도 : " + BrightnessConverter.brightnessConvert(tmp_ls[3]) + "%");
 
             }
         });
