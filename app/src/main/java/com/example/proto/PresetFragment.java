@@ -59,7 +59,6 @@ public class PresetFragment extends Fragment {
         presetNowBtn = view.findViewById(R.id.presetNowBtn);
         presetFixBtn = view.findViewById(R.id.presetFixBtn);
 
-        PresetSwitch = view.findViewById(R.id.PresetSwitch);
         PresetLayout = view.findViewById(R.id.PresetLayout);
 
         updateValue();
@@ -96,41 +95,6 @@ public class PresetFragment extends Fragment {
                 PresetFixDialog dialog = new PresetFixDialog(getContext());
                 dialog.show();
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT)); //다이어로그 배경 투명처리
-            }
-        });
-
-        setPresetStatus();
-
-        PresetSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    PresetLayout.setVisibility(View.VISIBLE);
-                    Map<String,Object>obj = new HashMap<>();
-                    obj.put("usePreset",true);
-                    MainFragment.fireStore_MyDB.collection("preset").document("preset").update(obj);
-                } else {
-                    PresetLayout.setVisibility(View.GONE);
-                    Map<String,Object>obj = new HashMap<>();
-                    obj.put("usePreset",false);
-                    MainFragment.fireStore_MyDB.collection("preset").document("preset").update(obj);
-                }
-            }
-        });
-    }
-
-    //DB데이터를 기반으로 프리셋 사용여부를 설정.
-    public void setPresetStatus(){
-        MainFragment.fireStore_MyDB.collection("preset").document("preset").addSnapshotListener(new EventListener<DocumentSnapshot>() {
-            @Override
-            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                boolean check = value.getBoolean("usePreset");
-
-                if (check) {
-                    PresetSwitch.setChecked(true);
-                } else {
-                    PresetSwitch.setChecked(false);
-                }
             }
         });
     }

@@ -30,7 +30,6 @@ public class SettingFragment extends Fragment {
     TextView hopeTempTV,hopeHumTV,hopeBrightnessTV,hopeWaterLevelTV; //현재 온도를 표시할 텍스트뷰
     EditText hopeTempET,hopeHumET,hopeBrightnessET,hopeWaterLevelET;
     Button hopeTempSetBtn,hopeHumSetBtn,hopeBrightnessSetBtn,hopeWaterLevelBtn;
-    TextView PresetModeTV,PresetModeNoticeTV;
 
     String name;
     boolean statusOfPreset = false;
@@ -64,11 +63,6 @@ public class SettingFragment extends Fragment {
         hopeBrightnessSetBtn = view.findViewById(R.id.hopeBrightnessSetBtn);
         hopeWaterLevelBtn = view.findViewById(R.id.hopeWaterLevelBtn);
 
-        PresetModeTV = view.findViewById(R.id.PresetModeTV);
-        PresetModeNoticeTV = view.findViewById(R.id.PresetModeNoticeTV);
-
-        setPresetMode(); // 프리셋모드 설정을 해주는 메소드
-
         setChangeDataListener(); // 희망온도 체인지 리스너 메소드
 
         hopeTempSetBtn.setOnClickListener(new View.OnClickListener() {
@@ -100,28 +94,6 @@ public class SettingFragment extends Fragment {
             public void onClick(View v) {
                 name = "water_value";
                 setHopeValue(hopeWaterLevelET,MainFragment.hope_water_level);
-            }
-        });
-    }
-
-    private void setPresetMode(){
-        MainFragment.fireStore_MyDB.collection("preset").document("preset").addSnapshotListener(new EventListener<DocumentSnapshot>() {
-            @Override
-            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                if (value == null && error != null){
-                    Log.d("ERROR","ERROR");
-                    return;
-                }
-
-                if(value.getBoolean("usePreset")){
-                    PresetModeTV.setText("프리셋모드 입니다");
-                    PresetModeNoticeTV.setVisibility(View.VISIBLE);
-                    statusOfPreset = true;
-                } else {
-                    PresetModeTV.setText("수동세팅모드 입니다");
-                    PresetModeNoticeTV.setVisibility(View.GONE);
-                    statusOfPreset = false;
-                }
             }
         });
     }
