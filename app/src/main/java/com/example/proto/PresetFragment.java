@@ -138,17 +138,7 @@ public class PresetFragment extends Fragment {
     // 텍스트뷰에 값을 업데이트 해주는 메소드
     public void updateValue() {
         // 몇주차인지 업데이트
-        MainFragment.fireStore_MyDB.addSnapshotListener(new EventListener<DocumentSnapshot>() {
-            @Override
-            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                if (error != null) {
-                    Log.d("Faild", "Failed EventListener");
-                    return;
-                }
-
-                currentWeekTV.setText(MainFragment.week + "주차");
-            }
-        });
+        currentWeekTV.setText(MainFragment.week + "주차");
 
         //사용하고 있는 프리셋이름과 현재주차 값 로딩
         MainFragment.fireStore_MyDB.collection("preset").document("preset").addSnapshotListener(new EventListener<DocumentSnapshot>() {
@@ -159,27 +149,13 @@ public class PresetFragment extends Fragment {
                     return;
                 }
 
+                //프리셋 이름
                 String name = value.getString("name");
                 currentPresetTV.setText(name);
 
                 String[] tmp_ls;
-                switch (week) {
-                    case "1":
-                        week_str = "1week";
-                        break;
-                    case "2":
-                        week_str = "2week";
-                        break;
-                    case "3":
-                        week_str = "3week";
-                        break;
-                    case "4":
-                        week_str = "4week";
-                        break;
-                }
-
                 //텍스트뷰에 현재주차 프리셋 온습도 업데이트
-                tmp_ls = value.getString(week_str).split(";");
+                tmp_ls = value.getString(MainFragment.term).split(";");
                 currentValueTV.setText("온도 : " + tmp_ls[1] + "˚습도 : " + tmp_ls[2] + "%  조도 : " + tmp_ls[3] + "%");
 
             }

@@ -48,7 +48,7 @@ public class StartFragment extends Fragment {
         startBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (MainFragment.fireStore_MyDB != null) {
+                if (MainFragment.term != null) {
                     startBtn.setVisibility(View.GONE);
 
                     //홈 프래그먼트로 이동

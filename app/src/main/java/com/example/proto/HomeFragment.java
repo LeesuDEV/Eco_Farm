@@ -46,10 +46,6 @@ public class HomeFragment extends Fragment {
     static ImageView cropsImageView;
 
     int expireDate;
-
-    static String cropName;
-    static long growthDate;
-
     public HomeFragment() {
 
     }
@@ -85,9 +81,11 @@ public class HomeFragment extends Fragment {
         nowBrightnessTV = view.findViewById(R.id.nowBrightnessTV);
         nowWaterLevelTV = view.findViewById(R.id.nowWaterLevelTV);
 
-        showMyfarmStatus();
+        updateFarmLayout(); // 농작물 유무에 따라 레이아웃 업데이트 해주는 메소드
 
         changeDataListener(); // 텍스트뷰에 Realtime DB 데이터 업데이트 하는 메소드
+
+        loadDataOnTextView();  //로드데이터 기반으로 텍스트뷰 업데이트
 
         selectFarmTV.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,6 +123,43 @@ public class HomeFragment extends Fragment {
                 });
             }
         });
+    }
+
+
+    //로드데이터 기반으로 텍스트뷰 업데이트
+    private void loadDataOnTextView() {
+        myNameTV.setText(MainFragment.name);
+
+        switch (MainFragment.crops) {
+            case "상추":
+                cropsTV.setText(MainFragment.crops);
+                cropsImageView.setImageResource(R.drawable.sangchu);
+                break;
+            default:
+                break;
+        }
+
+        HomeFragment.startDateTV.setText(MainFragment.date);
+        HomeFragment.expireDateTV.setText(MainFragment.expireDate);
+        HomeFragment.growthDateTV.setText(MainFragment.daysBetween + "일");
+
+        switch (MainFragment.term){
+            case "term5" :
+                HomeFragment.growthStateTV.setText("수확");
+                break;
+            case "term4" :
+                HomeFragment.growthStateTV.setText("성숙");
+                break;
+            case "term3" :
+                HomeFragment.growthStateTV.setText("생장");
+                break;
+            case "term2" :
+                HomeFragment.growthStateTV.setText("묘목");
+                break;
+            case "term1" :
+                HomeFragment.growthStateTV.setText("발아");
+                break;
+        }
     }
 
     //농작물 선택 다이어로그
@@ -166,7 +201,7 @@ public class HomeFragment extends Fragment {
                 if (snapshot.exists() && snapshot.getValue() != null) {
                     long Value = (long) snapshot.getValue();
                     textView.setText(Value + s);
-                    Log.d("SUCCESS",snapshot.getKey() + " : " + snapshot.getValue() +":" + Value);
+                    Log.d("SUCCESS", snapshot.getKey() + " : " + snapshot.getValue() + ":" + Value);
                 } else {
                     Log.w("MainFragment", "DataSnapshot does not exist or has no value!");
                 }
@@ -179,64 +214,8 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    public void showMyfarmStatus() {
-        MainFragment.fireStore_MyDB.addSnapshotListener(new EventListener<DocumentSnapshot>() {
-            @Override
-            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                Map<String, Object> data = value.getData();
-
-                updateFarmLayout(data); // 농작물 유무에 따라 레이아웃 업데이트 해주는 메소드
-
-                String crops = (String) data.get("CROPS");
-                String date = (String) data.get("DATE");
-                String expireDate = (String) data.get("EXPIRE_DATE");
-                String name = (String) data.get("USER_NAME");
-
-                HomeFragment.myNameTV.setText(name);
-
-                switch (crops) {
-                    case "상추":
-                        HomeFragment.cropsTV.setText(crops);
-                        HomeFragment.cropsImageView.setImageResource(R.drawable.sangchu);
-                        break;
-                    default:
-                        break;
-                }
-
-                HomeFragment.startDateTV.setText(date);
-                HomeFragment.expireDateTV.setText(expireDate);
-                HomeFragment.growthDateTV.setText(MainFragment.daysBetween + "일");
-            }
-        });
-    }
-
-    public void showGrowLevel() {
-        if (HomeFragment.growthDate > 42) {
-            //재배
-            HomeFragment.growthStateTV.setText("재배");
-        }
-        if (HomeFragment.growthDate < 42) {
-            //성숙기
-            HomeFragment.growthStateTV.setText("성숙기");
-        }
-        if (HomeFragment.growthDate < 28) {
-            //생장기
-            HomeFragment.growthStateTV.setText("생장기");
-        }
-        if (HomeFragment.growthDate < 14) {
-            //초기성장
-            HomeFragment.growthStateTV.setText("초기성장");
-        }
-        if (HomeFragment.growthDate < 7) {
-            //발아
-            HomeFragment.growthStateTV.setText("발아");
-        }
-    }
-
     // 농작물 유무에 따라 레이아웃 업데이트 해주는 메소드
-    private void updateFarmLayout(Map<String,Object> data) {
-        MainFragment.farmStatus = Boolean.parseBoolean(data.get("farmStatus").toString());
-
+    private void updateFarmLayout() {
         //팜 활성화에 따라 레이아웃 업데이트
         if (MainFragment.farmStatus) {
             newFarm.setVisibility(View.GONE);

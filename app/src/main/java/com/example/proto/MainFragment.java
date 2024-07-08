@@ -6,6 +6,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -23,7 +24,9 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import org.checkerframework.checker.units.qual.C;
 
@@ -90,7 +93,7 @@ public class MainFragment extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-                Log.d("item?",String.valueOf(item));
+                Log.d("item?", String.valueOf(item));
 
                 switch (item.getItemId()) {
                     case (R.id.mainmenu):
@@ -179,7 +182,60 @@ public class MainFragment extends AppCompatActivity {
 
                     week = daysBetween / 7;
                     Log.d("week", String.valueOf(week));
+
+                    showMyfarmStatus(); //팜정보 로드
                 }
+
+
+            }
+        });
+    }
+
+    static String crops;
+    static String date;
+    static String expireDate;
+    static String name;
+    static String term;
+
+    public void showMyfarmStatus() {
+        MainFragment.fireStore_MyDB.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                Map<String, Object> data = value.getData();
+
+                MainFragment.farmStatus = Boolean.parseBoolean(data.get("farmStatus").toString());
+
+                crops = (String) data.get("CROPS");
+                date = (String) data.get("DATE");
+                expireDate = (String) data.get("EXPIRE_DATE");
+                name = (String) data.get("USER_NAME");
+
+                // 현재 작물 상태 - 프리셋기준 비교
+                MainFragment.fireStore_MyDB.collection("preset").document("preset").addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                        String[] term1_ls = value.get("term1").toString().split(";");
+                        String[] term2_ls = value.get("term2").toString().split(";");
+                        String[] term3_ls = value.get("term3").toString().split(";");
+                        String[] term4_ls = value.get("term4").toString().split(";");
+
+                        if (MainFragment.daysBetween >= Integer.parseInt(term4_ls[0]) * 7) { //수확시기
+                            term = "term5";
+                        }
+                        if (MainFragment.daysBetween < Integer.parseInt(term4_ls[0]) * 7) { //텀4보다 숫자작을시 ~
+                            term = "term4";
+                        }
+                        if (MainFragment.daysBetween < Integer.parseInt(term3_ls[0]) * 7) {
+                            term = "term3";
+                        }
+                        if (MainFragment.daysBetween < Integer.parseInt(term2_ls[0]) * 7) {
+                            term = "term2";
+                        }
+                        if (MainFragment.daysBetween < Integer.parseInt(term1_ls[0]) * 7) { //텀1보다 숫자 작을시
+                            term = "term1";
+                        }
+                    }
+                });
             }
         });
     }
