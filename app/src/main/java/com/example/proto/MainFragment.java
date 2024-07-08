@@ -181,7 +181,6 @@ public class MainFragment extends AppCompatActivity {
                     Log.d("daysBetween", String.valueOf(daysBetween));
 
                     week = daysBetween / 7;
-                    Log.d("week", String.valueOf(week));
 
                     showMyfarmStatus(); //팜정보 로드
                 }
@@ -196,6 +195,7 @@ public class MainFragment extends AppCompatActivity {
     static String expireDate;
     static String name;
     static String term;
+    static DocumentSnapshot presetSnapshot;
 
     public void showMyfarmStatus() {
         MainFragment.fireStore_MyDB.addSnapshotListener(new EventListener<DocumentSnapshot>() {
@@ -214,6 +214,8 @@ public class MainFragment extends AppCompatActivity {
                 MainFragment.fireStore_MyDB.collection("preset").document("preset").addSnapshotListener(new EventListener<DocumentSnapshot>() {
                     @Override
                     public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                        presetSnapshot = value;
+
                         String[] term1_ls = value.get("term1").toString().split(";");
                         String[] term2_ls = value.get("term2").toString().split(";");
                         String[] term3_ls = value.get("term3").toString().split(";");

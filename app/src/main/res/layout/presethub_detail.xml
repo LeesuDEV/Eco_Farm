@@ -226,7 +226,7 @@
                             android:weightSum="4">
 
                             <TextView
-                                android:id="@+id/Preset1WeekScopeTV"
+                                android:id="@+id/Preset1TermScopeTV"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
@@ -241,7 +241,7 @@
                                 android:textSize="17sp" />
 
                             <TextView
-                                android:id="@+id/Preset1WeekTempTV"
+                                android:id="@+id/Preset1TermTempTV"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
@@ -256,7 +256,7 @@
                                 android:textSize="17sp" />
 
                             <TextView
-                                android:id="@+id/Preset1WeekHumTV"
+                                android:id="@+id/Preset1TermHumTV"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
@@ -271,7 +271,7 @@
                                 android:textSize="17sp" />
 
                             <TextView
-                                android:id="@+id/Preset1WeekBrightnessTV"
+                                android:id="@+id/Preset1TermBrightnessTV"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
@@ -296,7 +296,7 @@
                             android:weightSum="4">
 
                             <TextView
-                                android:id="@+id/Preset2WeekScopeTV"
+                                android:id="@+id/Preset2TermScopeTV"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
@@ -311,7 +311,7 @@
                                 android:textSize="17sp" />
 
                             <TextView
-                                android:id="@+id/Preset2WeekTempTV"
+                                android:id="@+id/Preset2TermTempTV"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
@@ -326,7 +326,7 @@
                                 android:textSize="17sp" />
 
                             <TextView
-                                android:id="@+id/Preset2WeekHumTV"
+                                android:id="@+id/Preset2TermHumTV"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
@@ -341,7 +341,7 @@
                                 android:textSize="17sp" />
 
                             <TextView
-                                android:id="@+id/Preset2WeekBrightnessTV"
+                                android:id="@+id/Preset2TermBrightnessTV"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
@@ -367,7 +367,7 @@
                             android:weightSum="4">
 
                             <TextView
-                                android:id="@+id/Preset3WeekScopeTV"
+                                android:id="@+id/Preset3TermScopeTV"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
@@ -382,7 +382,7 @@
                                 android:textSize="17sp" />
 
                             <TextView
-                                android:id="@+id/Preset3WeekTempTV"
+                                android:id="@+id/Preset3TermTempTV"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
@@ -397,7 +397,7 @@
                                 android:textSize="17sp" />
 
                             <TextView
-                                android:id="@+id/Preset3WeekHumTV"
+                                android:id="@+id/Preset3TermHumTV"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
@@ -412,7 +412,7 @@
                                 android:textSize="17sp" />
 
                             <TextView
-                                android:id="@+id/Preset3WeekBrightnessTV"
+                                android:id="@+id/Preset3TermBrightnessTV"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
@@ -437,7 +437,7 @@
                             android:weightSum="4">
 
                             <TextView
-                                android:id="@+id/Preset4WeekScopeTV"
+                                android:id="@+id/Preset4TermScopeTV"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
@@ -452,7 +452,7 @@
                                 android:textSize="17sp" />
 
                             <TextView
-                                android:id="@+id/Preset4WeekTempTV"
+                                android:id="@+id/Preset4TermTempTV"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
@@ -467,7 +467,7 @@
                                 android:textSize="17sp" />
 
                             <TextView
-                                android:id="@+id/Preset4WeekHumTV"
+                                android:id="@+id/Preset4TermHumTV"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
@@ -482,7 +482,7 @@
                                 android:textSize="17sp" />
 
                             <TextView
-                                android:id="@+id/Preset4WeekBrightnessTV"
+                                android:id="@+id/Preset4TermBrightnessTV"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"

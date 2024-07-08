@@ -49,7 +49,7 @@ public class PresetSubmitDialog extends Dialog {
         });
     }
 
-    String week1,week2,week3,week4;
+    String term1,term2,term3,term4;
     String comment;
     String name;
 
@@ -58,19 +58,19 @@ public class PresetSubmitDialog extends Dialog {
         MainFragment.cropsHub_DB.document(selectName).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
-                week1 = documentSnapshot.get("1week").toString();
-                week2 = documentSnapshot.get("2week").toString();
-                week3 = documentSnapshot.get("3week").toString();
-                week4 = documentSnapshot.get("4week").toString();
+                term1 = documentSnapshot.get("term1").toString();
+                term2 = documentSnapshot.get("term2").toString();
+                term3 = documentSnapshot.get("term3").toString();
+                term4 = documentSnapshot.get("term4").toString();
 
                 comment = documentSnapshot.get("comment").toString();
                 name = documentSnapshot.getId();
 
                 Map<String, Object>obj = new HashMap<>();
-                obj.put("1week",week1);
-                obj.put("2week",week2);
-                obj.put("3week",week3);
-                obj.put("4week",week4);
+                obj.put("term1",term1);
+                obj.put("term2",term2);
+                obj.put("term3",term3);
+                obj.put("term4",term4);
                 obj.put("comment",comment);
                 obj.put("name",name);
 

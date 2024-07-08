@@ -31,11 +31,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PresetFragment extends Fragment {
-    TextView currentPresetTV, currentValueTV, currentWeekTV;
-    String week;
-    String week_str;
+    TextView currentPresetTV, currentValueTV, currentTermTV;
     TextView presetHubBtn, presetNowBtn, presetFixBtn;
-    Switch PresetSwitch;
     LinearLayout PresetLayout;
 
     public PresetFragment() {
@@ -53,7 +50,7 @@ public class PresetFragment extends Fragment {
 
         currentPresetTV = view.findViewById(R.id.currentPresetTV);
         currentValueTV = view.findViewById(R.id.currentValueTV);
-        currentWeekTV = view.findViewById(R.id.currentWeekTV);
+        currentTermTV = view.findViewById(R.id.currentTermTV);
 
         presetHubBtn = view.findViewById(R.id.presetHubBtn);
         presetNowBtn = view.findViewById(R.id.presetNowBtn);
@@ -102,7 +99,7 @@ public class PresetFragment extends Fragment {
     // 텍스트뷰에 값을 업데이트 해주는 메소드
     public void updateValue() {
         // 몇주차인지 업데이트
-        currentWeekTV.setText(MainFragment.week + "주차");
+        currentTermTV.setText(MainFragment.week + "주차");
 
         //사용하고 있는 프리셋이름과 현재주차 값 로딩
         MainFragment.fireStore_MyDB.collection("preset").document("preset").addSnapshotListener(new EventListener<DocumentSnapshot>() {

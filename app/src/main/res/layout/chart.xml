@@ -60,7 +60,7 @@
                 android:layout_marginBottom="7dp"
                 app:cardCornerRadius="5dp">
             <Button
-                android:id="@+id/weekBtn"
+                android:id="@+id/termBtn"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#EDEDED"

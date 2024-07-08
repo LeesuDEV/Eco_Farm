@@ -63,7 +63,7 @@ public class ChartFragment extends Fragment {
     List<LocalDate> dateList = new ArrayList<>(); //날짜 리스트를 받을 LocalDate형식의 어레이리스트
 
     TextView dayTV;
-    Button dayBtn,weekBtn,monthBtn;
+    Button dayBtn,termBtn,monthBtn;
 
     public ChartFragment() {
 
@@ -79,7 +79,7 @@ public class ChartFragment extends Fragment {
         super.onViewCreated(view, bundle);
 
         dayBtn = view.findViewById(R.id.dayBtn);
-        weekBtn = view.findViewById(R.id.weekBtn);
+        termBtn = view.findViewById(R.id.termBtn);
         monthBtn = view.findViewById(R.id.monthBtn);
 
         dayTV = view.findViewById(R.id.dayTV);
@@ -109,7 +109,7 @@ public class ChartFragment extends Fragment {
             loadDateData(date_test);
         });
 
-        weekBtn.setOnClickListener(r -> {
+        termBtn.setOnClickListener(r -> {
             loadDateList_Data(date_test, range);
         });
 
